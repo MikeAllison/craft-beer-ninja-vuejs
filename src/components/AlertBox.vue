@@ -19,7 +19,7 @@ div {
   border-radius: 0.25rem;
   padding: 0.75rem 0.25rem;
   text-align: center;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   color: #fff;
 }
 .info {

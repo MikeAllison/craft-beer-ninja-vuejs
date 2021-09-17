@@ -19,6 +19,9 @@ export default {
   methods: {
     search() {
       console.log('searching...');
+      const searchBtn = document.querySelector('button');
+      searchBtn.setAttribute('disabled', true);
+      searchBtn.classList.add('disabled');
     }
   }
 };
@@ -51,11 +54,17 @@ button {
   padding: 0.75rem 0.5rem;
   border: 0;
   border-radius: 0.25rem;
+  border-color: 2b3c4e;
   line-height: 1.2;
-  background: #34495e;
+  background-color: #34495e;
   color: #fff;
   white-space: nowrap;
+  font-size: 0.9rem;
   text-decoration: none;
   cursor: pointer;
+}
+button.disabled {
+  background-color: #ccc;
+  border-color: #bbb;
 }
 </style>
