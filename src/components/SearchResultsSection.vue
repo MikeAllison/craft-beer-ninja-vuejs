@@ -47,6 +47,8 @@ export default {
       event.target.classList.toggle('selected');
       this.selectedTab = tab;
     }
+    // Need to create a method here to accept the location data from the form component (I think)
+    // This method will need to be provided to the form (and injected by the form)
   }
 };
 </script>

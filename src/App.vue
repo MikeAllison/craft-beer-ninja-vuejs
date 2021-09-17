@@ -1,20 +1,41 @@
 <template>
   <h2>Craft Beer Locator</h2>
   <search-form></search-form>
+  <alert-box v-if="alert.isShown" v-bind="alert"></alert-box>
   <search-results-section></search-results-section>
 </template>
 
 <script>
 import SearchForm from './components/SearchForm.vue';
+import AlertBox from './components/AlertBox.vue';
 import SearchResultsSection from './components/SearchResultsSection.vue';
 
 export default {
   components: {
     SearchForm,
+    AlertBox,
     SearchResultsSection
   },
   data() {
-    return {};
+    return {
+      alert: {
+        isShown: false,
+        alertType: null,
+        alertMsg: null
+      }
+    };
+  },
+  provide() {
+    return {
+      showAlert: this.showAlert
+    };
+  },
+  methods: {
+    showAlert(alertType, alertMsg) {
+      this.alert.alertType = alertType;
+      this.alert.alertMsg = alertMsg;
+      this.alert.isShown = true;
+    }
   }
 };
 </script>

@@ -1,58 +1,43 @@
 <template>
   <div>
-    <h4>Enter a city, state</h4>
     <form v-on:submit.prevent>
-      <input type="text" placeholder="New York, NY" />
-      <button @click="search">Locate!</button>
+      <label for="location">Enter a city, state</label>
+      <input
+        id="location"
+        name="location"
+        type="text"
+        placeholder="New York, NY"
+        ref="locationInput"
+      />
+      <button @click="search" ref="submitBtn">Locate!</button>
     </form>
   </div>
-  <alert-box v-if="alert.isShown" v-bind="alert"></alert-box>
 </template>
 
 <script>
-import AlertBox from './AlertBox.vue';
-
 export default {
-  components: {
-    AlertBox
-  },
-  data() {
-    return {
-      alert: {
-        isShown: false,
-        alertType: null,
-        alertMsg: null
-      }
-    };
-  },
+  inject: ['showAlert'],
   methods: {
     search() {
-      const inputEl = document.querySelector('input');
+      const locationInput = this.$refs.locationInput;
+      const submitBtn = this.$refs.submitBtn;
 
-      if (inputEl.value.trim() === '') {
-        this.alert.alertType = 'error';
-        this.alert.alertMsg = 'Enter a location.';
-        this.alert.isShown = true;
+      if (locationInput.value.trim() === '') {
+        this.showAlert('error', 'Enter a location.');
         return;
       }
 
       console.log('searching...');
-
-      inputEl.setAttribute('disabled', true);
-
-      const searchBtn = document.querySelector('button');
-      searchBtn.setAttribute('disabled', true);
-      searchBtn.classList.add('disabled');
-
-      this.alert.alertType = 'info';
-      this.alert.alertMsg = 'x results. Click each place for more details.';
-      this.alert.isShown = true;
+      locationInput.setAttribute('disabled', true);
+      submitBtn.setAttribute('disabled', true);
+      submitBtn.classList.add('disabled');
 
       setTimeout(() => {
-        searchBtn.removeAttribute('disabled');
-        searchBtn.classList.remove('disabled');
-        inputEl.removeAttribute('disabled');
-        inputEl.value = null;
+        submitBtn.removeAttribute('disabled');
+        submitBtn.classList.remove('disabled');
+        locationInput.removeAttribute('disabled');
+        locationInput.value = null;
+        this.showAlert('info', 'x results. Click each place for more details.');
         console.log('search complete.');
       }, 2000);
     }
@@ -69,6 +54,7 @@ div {
 }
 form {
   margin-top: 0.25rem;
+  text-align: center;
 }
 input {
   width: 100%;
