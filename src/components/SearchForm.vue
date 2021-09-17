@@ -52,6 +52,7 @@ export default {
         searchBtn.removeAttribute('disabled');
         searchBtn.classList.remove('disabled');
         inputEl.removeAttribute('disabled');
+        inputEl.value = null;
         console.log('search complete.');
       }, 2000);
     }
@@ -75,6 +76,7 @@ input {
   border: 1px solid #ddd;
   padding: 0.75rem 0.25rem;
   text-align: center;
+  font-size: 0.95rem;
 }
 input:focus,
 input:focus-visible {
@@ -84,9 +86,8 @@ button {
   width: 100%;
   margin-top: 0.25rem;
   padding: 0.75rem 0.5rem;
-  border: 0;
+  border: 1px solid #2b3c4e;
   border-radius: 0.25rem;
-  border-color: 2b3c4e;
   line-height: 1.2;
   background-color: #34495e;
   color: #fff;
