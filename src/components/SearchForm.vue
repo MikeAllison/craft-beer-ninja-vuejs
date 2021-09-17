@@ -6,7 +6,7 @@
       <button @click="search">Locate!</button>
     </form>
   </div>
-  <alert-box v-if="showAlert"></alert-box>
+  <alert-box v-if="alert.isShown" v-bind="alert"></alert-box>
 </template>
 
 <script>
@@ -18,7 +18,11 @@ export default {
   },
   data() {
     return {
-      showAlert: false
+      alert: {
+        isShown: false,
+        alertType: null,
+        alertMsg: null
+      }
     };
   },
   methods: {
@@ -26,8 +30,9 @@ export default {
       const inputEl = document.querySelector('input');
 
       if (inputEl.value.trim() === '') {
-        this.showAlert = true;
-        console.log('no location');
+        this.alert.alertType = 'error';
+        this.alert.alertMsg = 'Enter a location.';
+        this.alert.isShown = true;
         return;
       }
 
@@ -39,7 +44,9 @@ export default {
       searchBtn.setAttribute('disabled', true);
       searchBtn.classList.add('disabled');
 
-      this.showAlert = true;
+      this.alert.alertType = 'info';
+      this.alert.alertMsg = 'x results. Click each place for more details.';
+      this.alert.isShown = true;
 
       setTimeout(() => {
         searchBtn.removeAttribute('disabled');

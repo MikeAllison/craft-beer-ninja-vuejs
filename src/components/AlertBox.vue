@@ -4,12 +4,7 @@
 
 <script>
 export default {
-  data() {
-    return {
-      alertType: 'error',
-      alertMsg: 'This is the error message.'
-    };
-  }
+  props: ['alertType', 'alertMsg']
 };
 </script>
 
