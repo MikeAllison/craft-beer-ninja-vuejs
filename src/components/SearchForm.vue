@@ -64,7 +64,6 @@ button {
   cursor: pointer;
 }
 button.disabled {
-  background-color: #ccc;
-  border-color: #bbb;
+  opacity: 0.7;
 }
 </style>
