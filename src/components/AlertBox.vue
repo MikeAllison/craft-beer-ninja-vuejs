@@ -7,7 +7,7 @@ export default {
   data() {
     return {
       alertType: 'error',
-      alertMsg: 'This is the alert message.'
+      alertMsg: 'This is the error message.'
     };
   }
 };

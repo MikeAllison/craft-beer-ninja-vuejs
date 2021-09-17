@@ -6,7 +6,7 @@
       <button @click="search">Locate!</button>
     </form>
   </div>
-  <alert-box></alert-box>
+  <alert-box v-if="showAlert"></alert-box>
 </template>
 
 <script>
@@ -16,12 +16,37 @@ export default {
   components: {
     AlertBox
   },
+  data() {
+    return {
+      showAlert: false
+    };
+  },
   methods: {
     search() {
+      const inputEl = document.querySelector('input');
+
+      if (inputEl.value.trim() === '') {
+        this.showAlert = true;
+        console.log('no location');
+        return;
+      }
+
       console.log('searching...');
+
+      inputEl.setAttribute('disabled', true);
+
       const searchBtn = document.querySelector('button');
       searchBtn.setAttribute('disabled', true);
       searchBtn.classList.add('disabled');
+
+      this.showAlert = true;
+
+      setTimeout(() => {
+        searchBtn.removeAttribute('disabled');
+        searchBtn.classList.remove('disabled');
+        inputEl.removeAttribute('disabled');
+        console.log('search complete.');
+      }, 2000);
     }
   }
 };
