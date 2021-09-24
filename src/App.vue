@@ -1,25 +1,31 @@
 <template>
+  <search-modal v-if="searchModal.isVisible"></search-modal>
   <h2>Craft Beer Locator</h2>
   <search-form></search-form>
-  <alert-box v-if="alert.isShown" v-bind="alert"></alert-box>
+  <alert-box v-if="alert.isVisible" v-bind="alert"></alert-box>
   <search-results-section></search-results-section>
 </template>
 
 <script>
+import SearchModal from './components/SearchModal.vue';
 import SearchForm from './components/SearchForm.vue';
 import AlertBox from './components/AlertBox.vue';
 import SearchResultsSection from './components/SearchResultsSection.vue';
 
 export default {
   components: {
+    SearchModal,
     SearchForm,
     AlertBox,
     SearchResultsSection
   },
   data() {
     return {
+      searchModal: {
+        isVisible: false
+      },
       alert: {
-        isShown: false,
+        isVisible: false,
         alertType: null,
         alertMsg: null
       }
@@ -27,14 +33,18 @@ export default {
   },
   provide() {
     return {
+      showSearchModal: this.showSearchModal,
       showAlert: this.showAlert
     };
   },
   methods: {
+    showSearchModal(val) {
+      this.searchModal.isVisible = val;
+    },
     showAlert(alertType, alertMsg) {
       this.alert.alertType = alertType;
       this.alert.alertMsg = alertMsg;
-      this.alert.isShown = true;
+      this.alert.isVisible = true;
     }
   }
 };

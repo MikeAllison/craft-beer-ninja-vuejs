@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form v-on:submit.prevent>
+    <form @submit.prevent="search">
       <label for="location">Enter a city, state</label>
       <input
         id="location"
@@ -9,14 +9,14 @@
         placeholder="New York, NY"
         ref="locationInput"
       />
-      <button @click="search" ref="submitBtn">Locate!</button>
+      <button ref="submitBtn">Locate!</button>
     </form>
   </div>
 </template>
 
 <script>
 export default {
-  inject: ['showAlert'],
+  inject: ['showSearchModal', 'showAlert'],
   methods: {
     search() {
       const locationInput = this.$refs.locationInput;
@@ -27,7 +27,7 @@ export default {
         return;
       }
 
-      console.log('searching...');
+      this.showSearchModal(true);
       locationInput.setAttribute('disabled', true);
       submitBtn.setAttribute('disabled', true);
       submitBtn.classList.add('disabled');
@@ -38,7 +38,7 @@ export default {
         locationInput.removeAttribute('disabled');
         locationInput.value = null;
         this.showAlert('info', 'x results. Click each place for more details.');
-        console.log('search complete.');
+        this.showSearchModal(false);
       }, 2000);
     }
   }
@@ -66,7 +66,7 @@ input {
 }
 input:focus,
 input:focus-visible {
-  border: 2px solid #16a085 !important;
+  border: 1px solid #16a085 !important;
 }
 button {
   width: 100%;

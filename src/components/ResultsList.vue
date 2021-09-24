@@ -7,7 +7,7 @@
       :distance="location.distance"
     >
       <span>{{ location.name }}</span>
-      <span class="distance">{{ location.distance }}</span>
+      <span class="distance">{{ location.distance }} mi</span>
     </li>
   </ul>
 </template>
@@ -44,7 +44,7 @@ li:hover {
   background-color: #f9f9f9;
 }
 .distance {
-  width: 25px;
+  min-width: 45px;
   border-radius: 0.25rem;
   padding: 0.25rem;
   color: #fff;

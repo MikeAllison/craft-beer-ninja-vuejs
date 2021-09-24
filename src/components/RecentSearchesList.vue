@@ -44,7 +44,7 @@ li:hover {
   background-color: #f9f9f9;
 }
 .placesCount {
-  width: 25px;
+  min-width: 30px;
   border-radius: 0.25rem;
   padding: 0.25rem;
   color: #fff;
