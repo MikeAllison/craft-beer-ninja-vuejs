@@ -3,8 +3,11 @@
     <div class="search-modal">
       <div class="search-step">{{ currentStep }}</div>
       <div class="progress-outer">
-        <div class="progress-inner">
-          <span class="progress-amount">0</span>
+        <div
+          class="progress-inner"
+          v-bind:style="{ width: searchProgress + '%' }"
+        >
+          <span class="progress-amount">{{ searchProgress + '%' }}</span>
         </div>
       </div>
     </div>
@@ -47,7 +50,7 @@ dialog {
   overflow: hidden;
 }
 .progress-inner {
-  width: 50%;
+  width: 0;
   background-color: #16a085;
 }
 .progress-amount {

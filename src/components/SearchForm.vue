@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  inject: ['showSearchModal', 'showAlert'],
+  inject: ['showSearchModal', 'updateSearchModal', 'showAlert'],
   methods: {
     search() {
       const locationInput = this.$refs.locationInput;
@@ -33,13 +33,27 @@ export default {
       submitBtn.classList.add('disabled');
 
       setTimeout(() => {
+        this.updateSearchModal('Requesting Places', 25);
+      }, 1000);
+      setTimeout(() => {
+        this.updateSearchModal('Returning Places', 50);
+      }, 2000);
+      setTimeout(() => {
+        this.updateSearchModal('Updating List', 75);
+      }, 3000);
+      setTimeout(() => {
+        this.updateSearchModal('Finished', 100);
+      }, 4000);
+
+      setTimeout(() => {
         submitBtn.removeAttribute('disabled');
         submitBtn.classList.remove('disabled');
         locationInput.removeAttribute('disabled');
         locationInput.value = null;
         this.showAlert('info', 'x results. Click each place for more details.');
         this.showSearchModal(false);
-      }, 2000);
+        this.updateSearchModal('Beginning Search', 0);
+      }, 5000);
     }
   }
 };

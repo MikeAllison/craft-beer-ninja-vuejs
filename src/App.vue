@@ -1,5 +1,8 @@
 <template>
-  <search-modal v-if="searchModal.isVisible"></search-modal>
+  <search-modal
+    v-if="searchModal.isVisible"
+    v-bind="searchModal"
+  ></search-modal>
   <h2>Craft Beer Locator</h2>
   <search-form></search-form>
   <alert-box v-if="alert.isVisible" v-bind="alert"></alert-box>
@@ -22,7 +25,9 @@ export default {
   data() {
     return {
       searchModal: {
-        isVisible: false
+        isVisible: false,
+        currentStep: 'Beginning Search',
+        searchProgress: 0
       },
       alert: {
         isVisible: false,
@@ -34,12 +39,17 @@ export default {
   provide() {
     return {
       showSearchModal: this.showSearchModal,
+      updateSearchModal: this.updateSearchModal,
       showAlert: this.showAlert
     };
   },
   methods: {
     showSearchModal(val) {
       this.searchModal.isVisible = val;
+    },
+    updateSearchModal(currentStep, searchProgress) {
+      this.searchModal.currentStep = currentStep;
+      this.searchModal.searchProgress = searchProgress;
     },
     showAlert(alertType, alertMsg) {
       this.alert.alertType = alertType;
