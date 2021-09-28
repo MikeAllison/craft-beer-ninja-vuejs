@@ -26,7 +26,7 @@ export default {
     return {
       searchModal: {
         isVisible: false,
-        currentStep: 'Beginning Search',
+        currentStep: null,
         searchProgress: 0
       },
       alert: {

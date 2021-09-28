@@ -27,6 +27,7 @@ export default {
         return;
       }
 
+      this.updateSearchModal('Beginning Search', 0);
       this.showSearchModal(true);
       locationInput.setAttribute('disabled', true);
       submitBtn.setAttribute('disabled', true);
@@ -52,7 +53,6 @@ export default {
         locationInput.value = null;
         this.showAlert('info', 'x results. Click each place for more details.');
         this.showSearchModal(false);
-        this.updateSearchModal('Beginning Search', 0);
       }, 5000);
     }
   }
