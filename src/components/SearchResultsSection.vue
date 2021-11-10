@@ -1,9 +1,15 @@
 <template>
   <ul class="menu">
-    <li @click="setSelectedTab('results-list')" class="selected">
+    <li
+      @click="setSelectedTab('results-list')"
+      :class="{ selected: this.selectedTab === 'results-list' }"
+    >
       Results
     </li>
-    <li @click="setSelectedTab('recent-searches-list')">
+    <li
+      @click="setSelectedTab('recent-searches-list')"
+      :class="{ selected: this.selectedTab === 'recent-searches-list' }"
+    >
       Recent Searches
     </li>
   </ul>
@@ -42,13 +48,10 @@ export default {
   },
   methods: {
     setSelectedTab(tab) {
-      const selectedLi = document.querySelector('li.selected');
-      selectedLi.classList.remove('selected');
-      event.target.classList.toggle('selected');
       this.selectedTab = tab;
     }
     // Need to create a method here to accept the location data from the form component (I think)
-    // This method will need to be provided to the form (and injected by the form)
+    // This method will need to be provided to the form (and injected from the form component)
   }
 };
 </script>

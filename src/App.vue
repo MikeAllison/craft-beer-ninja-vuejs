@@ -1,8 +1,10 @@
 <template>
-  <search-modal
-    v-if="searchModal.isVisible"
-    v-bind="searchModal"
-  ></search-modal>
+  <teleport to="body">
+    <search-modal
+      v-if="searchModal.isVisible"
+      v-bind="searchModal"
+    ></search-modal>
+  </teleport>
   <h2>Craft Beer Locator</h2>
   <search-form></search-form>
   <alert-box v-if="alert.isVisible" v-bind="alert"></alert-box>

@@ -1,13 +1,14 @@
 <template>
   <div>
     <form @submit.prevent="search">
-      <label for="location">Enter a city, state</label>
+      <label for="search-location">Enter a city, state</label>
       <input
-        id="location"
-        name="location"
+        id="search-location"
+        name="search-location"
         type="text"
         placeholder="New York, NY"
-        ref="locationInput"
+        ref="searchLocationInput"
+        v-model.trim="searchLocation"
       />
       <button ref="submitBtn">Locate!</button>
     </form>
@@ -16,20 +17,26 @@
 
 <script>
 export default {
+  data() {
+    return {
+      searchLocation: ''
+    };
+  },
   inject: ['showSearchModal', 'updateSearchModal', 'showAlert'],
+
   methods: {
     search() {
-      const locationInput = this.$refs.locationInput;
+      const searchLocationInput = this.$refs.searchLocationInput;
       const submitBtn = this.$refs.submitBtn;
 
-      if (locationInput.value.trim() === '') {
-        this.showAlert('error', 'Enter a location.');
+      if (this.searchLocation === '') {
+        this.showAlert('error', 'Enter a city, state.');
         return;
       }
 
       this.updateSearchModal('Beginning Search', 0);
       this.showSearchModal(true);
-      locationInput.setAttribute('disabled', true);
+      searchLocationInput.setAttribute('disabled', true);
       submitBtn.setAttribute('disabled', true);
       submitBtn.classList.add('disabled');
 
@@ -49,8 +56,8 @@ export default {
       setTimeout(() => {
         submitBtn.removeAttribute('disabled');
         submitBtn.classList.remove('disabled');
-        locationInput.removeAttribute('disabled');
-        locationInput.value = null;
+        searchLocationInput.removeAttribute('disabled');
+        this.searchLocation = '';
         this.showAlert('info', 'x results. Click each place for more details.');
         this.showSearchModal(false);
       }, 5000);
