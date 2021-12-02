@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
@@ -34,33 +36,37 @@ export default {
         return;
       }
 
+      // Start Search
       this.updateSearchModal('Beginning Search', 0);
       this.showSearchModal(true);
       searchLocationInput.setAttribute('disabled', true);
       submitBtn.setAttribute('disabled', true);
       submitBtn.classList.add('disabled');
 
-      setTimeout(() => {
-        this.updateSearchModal('Requesting Places', 25);
-      }, 1000);
-      setTimeout(() => {
-        this.updateSearchModal('Returning Places', 50);
-      }, 2000);
-      setTimeout(() => {
-        this.updateSearchModal('Updating List', 75);
-      }, 3000);
-      setTimeout(() => {
-        this.updateSearchModal('Finished', 100);
-      }, 4000);
+      // TO-DO: Get from HTML5 geolocation
+      const coords = {
+        lat: '40.67173176388294',
+        lng: '-73.96348077255824'
+      };
 
-      setTimeout(() => {
-        submitBtn.removeAttribute('disabled');
-        submitBtn.classList.remove('disabled');
-        searchLocationInput.removeAttribute('disabled');
-        this.searchLocation = '';
-        this.showAlert('info', 'x results. Click each place for more details.');
-        this.showSearchModal(false);
-      }, 5000);
+      axios
+        .post(process.env.VUE_APP_API_URI, {
+          body: coords
+        })
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+
+      // End Search
+      submitBtn.removeAttribute('disabled');
+      submitBtn.classList.remove('disabled');
+      searchLocationInput.removeAttribute('disabled');
+      this.searchLocation = '';
+      this.showAlert('info', 'x results. Click each place for more details.');
+      this.showSearchModal(false);
     }
   }
 };
