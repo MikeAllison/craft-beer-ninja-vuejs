@@ -43,15 +43,13 @@ export default {
       submitBtn.setAttribute('disabled', true);
       submitBtn.classList.add('disabled');
 
-      // TO-DO: Get from HTML5 geolocation
-      const coords = {
-        lat: '40.67173176388294',
-        lng: '-73.96348077255824'
+      const reqBody = {
+        searchLocation: this.searchLocation
       };
 
       axios
         .post(process.env.VUE_APP_API_URI, {
-          body: coords
+          body: reqBody
         })
         .then(response => {
           console.log(response);
