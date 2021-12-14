@@ -48,11 +48,10 @@ export default {
       };
 
       axios
-        .post(process.env.VUE_APP_API_URI, {
-          body: reqBody
-        })
+        .post(process.env.VUE_APP_API_URI, reqBody)
         .then(response => {
-          console.log(response);
+          console.log(response.data.results);
+          // TO-DO: Pass response.data.results to ResultsList
         })
         .catch(error => {
           console.log(error);
