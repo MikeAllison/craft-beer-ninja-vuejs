@@ -28,11 +28,6 @@ export default {
   data() {
     return {
       selectedTab: 'results-list',
-      locations: [
-        { id: '1', name: 'Solid State', distance: 0.5 },
-        { id: '2', name: 'Sweet Avenue', distance: 0.3 },
-        { id: '3', name: 'Astoria Bier & Cheese', distance: 1.1 }
-      ],
       recentSearches: [
         { id: '1', name: 'New York, NY', placesCount: 50 },
         { id: '2', name: 'Woodside, NY', placesCount: 40 },
@@ -42,7 +37,6 @@ export default {
   },
   provide() {
     return {
-      locations: this.locations,
       recentSearches: this.recentSearches
     };
   },

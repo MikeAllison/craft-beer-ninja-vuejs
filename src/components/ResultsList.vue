@@ -1,20 +1,20 @@
 <template>
   <ul>
     <li
-      v-for="location in locations"
-      :key="location.id"
-      :name="location.name"
-      :distance="location.distance"
+      v-for="place in places"
+      :key="place.place_id"
+      :name="place.name"
+      :distance="place.distance"
     >
-      <span>{{ location.name }}</span>
-      <span class="distance">{{ location.distance }} mi</span>
+      <span>{{ place.name }}</span>
+      <span class="distance">{{ place.distance }} mi</span>
     </li>
   </ul>
 </template>
 
 <script>
 export default {
-  inject: ['locations']
+  inject: ['places']
 };
 </script>
 

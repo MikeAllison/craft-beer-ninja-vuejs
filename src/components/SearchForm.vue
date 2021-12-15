@@ -25,7 +25,7 @@ export default {
     };
   },
   inject: ['showSearchModal', 'updateSearchModal', 'showAlert'],
-
+  emits: ['update-places'],
   methods: {
     search() {
       const searchLocationInput = this.$refs.searchLocationInput;
@@ -50,8 +50,10 @@ export default {
       axios
         .post(process.env.VUE_APP_API_URI, reqBody)
         .then(response => {
-          console.log(response.data.results);
-          // TO-DO: Pass response.data.results to ResultsList
+          this.$emit('update-places', {
+            places: response.data.places,
+            nextPageToken: response.data.next_page_token
+          });
         })
         .catch(error => {
           console.log(error);

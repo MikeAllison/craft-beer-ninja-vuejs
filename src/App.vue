@@ -6,7 +6,7 @@
     ></search-modal>
   </teleport>
   <h2>Craft Beer Locator</h2>
-  <search-form></search-form>
+  <search-form @update-places="updatePlaces"></search-form>
   <alert-box v-if="alert.isVisible" v-bind="alert"></alert-box>
   <search-results-section></search-results-section>
 </template>
@@ -26,6 +26,8 @@ export default {
   },
   data() {
     return {
+      places: [],
+      nextPageToken: null,
       searchModal: {
         isVisible: false,
         currentStep: null,
@@ -40,6 +42,7 @@ export default {
   },
   provide() {
     return {
+      places: this.places,
       showSearchModal: this.showSearchModal,
       updateSearchModal: this.updateSearchModal,
       showAlert: this.showAlert
@@ -57,6 +60,12 @@ export default {
       this.alert.alertType = alertType;
       this.alert.alertMsg = alertMsg;
       this.alert.isVisible = true;
+    },
+    updatePlaces(results) {
+      this.places = results.places;
+      this.nextPageToken = results.nextPageToken;
+      console.log(this.places);
+      console.log(this.nextPageToken);
     }
   }
 };
