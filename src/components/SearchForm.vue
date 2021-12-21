@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form @submit.prevent="search">
+    <form @submit.prevent="formSearch">
       <label for="search-location">Enter a city, state</label>
       <input
         id="search-location"
@@ -11,6 +11,9 @@
         v-model.trim="searchLocation"
       />
       <button ref="submitBtn">Locate!</button>
+    </form>
+    <form @submit.prevent="geoSearch">
+      <button class="geo-locate-btn">Use My Location</button>
     </form>
   </div>
 </template>
@@ -41,7 +44,7 @@ export default {
       this.searchLocation = '';
       this.showSearchModal(false);
     },
-    search() {
+    formSearch() {
       if (this.searchLocation === '') {
         this.showAlert('error', 'Enter a city, state.');
         return;
@@ -72,6 +75,55 @@ export default {
           );
           this.enableUI();
         });
+    },
+    geoSearch() {
+      if (!navigator.geolocation) {
+        this.showAlert(
+          'error',
+          `Sorry, your browser doesn't support geolocation.`
+        );
+      }
+
+      this.disableUI();
+
+      navigator.geolocation.getCurrentPosition(
+        geoPosition => {
+          axios
+            .post(`${process.env.VUE_APP_API_URI}/geo-search`, {
+              coordinates: {
+                lat: geoPosition.coords.latitude,
+                lng: geoPosition.coords.longitude
+              }
+            })
+            .then(response => {
+              store.commit('updatePlaces', response.data);
+              const placeCount = response.data.next_page_token
+                ? '20+'
+                : response.data.places.length;
+              this.showAlert(
+                'info',
+                `${placeCount} results. Click each place for more details.`
+              );
+              this.enableUI();
+            })
+            .catch(error => {
+              console.log(error);
+              this.showAlert(
+                'error',
+                `Sorry, there was a problem with the search.`
+              );
+              this.enableUI();
+            });
+        },
+        () => {
+          console.log('Browser Geolocation Error');
+          this.showAlert(
+            'error',
+            `Sorry, there was a problem with the search.`
+          );
+          this.enableUI();
+        }
+      );
     }
   }
 };
@@ -113,6 +165,10 @@ button {
   font-size: 0.9rem;
   text-decoration: none;
   cursor: pointer;
+}
+button.geo-locate-btn {
+  border-color: #87999a;
+  background-color: #95a5a6;
 }
 button.disabled {
   opacity: 0.7;
