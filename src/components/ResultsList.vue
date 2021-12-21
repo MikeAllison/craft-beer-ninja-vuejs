@@ -13,8 +13,14 @@
 </template>
 
 <script>
+import store from '../store/index.js';
+
 export default {
-  inject: ['places']
+  computed: {
+    places() {
+      return store.state.places;
+    }
+  }
 };
 </script>
 

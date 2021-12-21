@@ -26,8 +26,6 @@ export default {
   },
   data() {
     return {
-      places: [],
-      nextPageToken: null,
       searchModal: {
         isVisible: false,
         currentStep: null,

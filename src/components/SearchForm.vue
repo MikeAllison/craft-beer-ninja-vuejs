@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import store from '../store/index.js';
 import axios from 'axios';
 
 export default {
@@ -25,47 +26,52 @@ export default {
     };
   },
   inject: ['showSearchModal', 'updateSearchModal', 'showAlert'],
-  emits: ['update-places'],
   methods: {
+    disableUI() {
+      this.updateSearchModal('Beginning Search', 0);
+      this.showSearchModal(true);
+      this.$refs.searchLocationInput.setAttribute('disabled', true);
+      this.$refs.submitBtn.setAttribute('disabled', true);
+      this.$refs.submitBtn.classList.add('disabled');
+    },
+    enableUI() {
+      this.$refs.submitBtn.removeAttribute('disabled');
+      this.$refs.submitBtn.classList.remove('disabled');
+      this.$refs.searchLocationInput.removeAttribute('disabled');
+      this.searchLocation = '';
+      this.showSearchModal(false);
+    },
     search() {
-      const searchLocationInput = this.$refs.searchLocationInput;
-      const submitBtn = this.$refs.submitBtn;
-
       if (this.searchLocation === '') {
         this.showAlert('error', 'Enter a city, state.');
         return;
       }
 
-      // Start Search
-      this.updateSearchModal('Beginning Search', 0);
-      this.showSearchModal(true);
-      searchLocationInput.setAttribute('disabled', true);
-      submitBtn.setAttribute('disabled', true);
-      submitBtn.classList.add('disabled');
-
-      const reqBody = {
-        searchLocation: this.searchLocation
-      };
+      this.disableUI();
 
       axios
-        .post(process.env.VUE_APP_API_URI, reqBody)
+        .post(`${process.env.VUE_APP_API_URI}/form-search`, {
+          searchLocation: this.searchLocation
+        })
         .then(response => {
-          this.$emit('update-places', {
-            places: response.data.places,
-            nextPageToken: response.data.next_page_token
-          });
+          store.commit('updatePlaces', response.data);
+          const placeCount = response.data.next_page_token
+            ? '20+'
+            : response.data.places.length;
+          this.showAlert(
+            'info',
+            `${placeCount} results. Click each place for more details.`
+          );
+          this.enableUI();
         })
         .catch(error => {
           console.log(error);
+          this.showAlert(
+            'error',
+            `Sorry, there was a problem with the search.`
+          );
+          this.enableUI();
         });
-
-      // End Search
-      submitBtn.removeAttribute('disabled');
-      submitBtn.classList.remove('disabled');
-      searchLocationInput.removeAttribute('disabled');
-      this.searchLocation = '';
-      this.showAlert('info', 'x results. Click each place for more details.');
-      this.showSearchModal(false);
     }
   }
 };

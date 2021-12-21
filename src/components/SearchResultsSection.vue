@@ -44,8 +44,6 @@ export default {
     setSelectedTab(tab) {
       this.selectedTab = tab;
     }
-    // Need to create a method here to accept the location data from the form component (I think)
-    // This method will need to be provided to the form (and injected from the form component)
   }
 };
 </script>
@@ -64,7 +62,7 @@ ul.menu > li {
 }
 .selected {
   border: 1px solid #ddd;
-  border-bottom: 1px solid #fff;
+  border-bottom: 2px solid #fff;
   border-radius: 0.25rem 0.25rem 0 0;
   background-color: white;
   color: #555 !important;
