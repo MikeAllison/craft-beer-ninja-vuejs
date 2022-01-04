@@ -51,6 +51,7 @@ export default {
       }
 
       this.disableUI();
+      this.updateSearchModal('Fetching Places', 33);
 
       axios
         .post(`${process.env.VUE_APP_API_URI}/form-search`, {
@@ -85,6 +86,7 @@ export default {
       }
 
       this.disableUI();
+      this.updateSearchModal('Fetching Places', 33);
 
       navigator.geolocation.getCurrentPosition(
         geoPosition => {

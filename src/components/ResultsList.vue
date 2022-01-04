@@ -5,6 +5,7 @@
       :key="place.place_id"
       :name="place.name"
       :distance="place.distance"
+      @click="getPlaceDetails(place.place_id)"
     >
       <span>{{ place.name }}</span>
       <span class="distance">{{ place.distance }} mi</span>
@@ -14,8 +15,24 @@
 
 <script>
 import store from '../store/index.js';
+import axios from 'axios';
 
 export default {
+  inject: ['showPlaceDetailsModal'],
+  methods: {
+    getPlaceDetails(placeId) {
+      axios
+        .post(`${process.env.VUE_APP_API_URI}/place-details`, {
+          placeId: placeId
+        })
+        .then(response => {
+          this.showPlaceDetailsModal(true, response.data.place_details);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+  },
   computed: {
     places() {
       return store.state.places;

@@ -4,8 +4,12 @@
       v-if="searchModal.isVisible"
       v-bind="searchModal"
     ></search-modal>
+    <place-details-modal
+      v-if="placeDetailsModal.isVisible"
+      v-bind="placeDetailsModal"
+    ></place-details-modal>
   </teleport>
-  <h2>Craft Beer Locator</h2>
+  <h2>Craft Beer Near...</h2>
   <search-form></search-form>
   <alert-box v-if="alert.isVisible" v-bind="alert"></alert-box>
   <search-results-section></search-results-section>
@@ -16,13 +20,15 @@ import SearchModal from './components/SearchModal.vue';
 import SearchForm from './components/SearchForm.vue';
 import AlertBox from './components/AlertBox.vue';
 import SearchResultsSection from './components/SearchResultsSection.vue';
+import PlaceDetailsModal from './components/PlaceDetailsModal.vue';
 
 export default {
   components: {
     SearchModal,
     SearchForm,
     AlertBox,
-    SearchResultsSection
+    SearchResultsSection,
+    PlaceDetailsModal
   },
   data() {
     return {
@@ -35,6 +41,10 @@ export default {
         isVisible: false,
         alertType: null,
         alertMsg: null
+      },
+      placeDetailsModal: {
+        isVisible: false,
+        placeDetails: null
       }
     };
   },
@@ -42,7 +52,8 @@ export default {
     return {
       showSearchModal: this.showSearchModal,
       updateSearchModal: this.updateSearchModal,
-      showAlert: this.showAlert
+      showAlert: this.showAlert,
+      showPlaceDetailsModal: this.showPlaceDetailsModal
     };
   },
   methods: {
@@ -57,6 +68,10 @@ export default {
       this.alert.alertType = alertType;
       this.alert.alertMsg = alertMsg;
       this.alert.isVisible = true;
+    },
+    showPlaceDetailsModal(shown, placeDetails) {
+      this.placeDetailsModal.placeDetails = placeDetails;
+      this.placeDetailsModal.isVisible = shown;
     }
   }
 };
