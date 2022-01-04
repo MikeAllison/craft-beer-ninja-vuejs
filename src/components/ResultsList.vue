@@ -1,16 +1,23 @@
 <template>
-  <ul>
-    <li
-      v-for="place in places"
-      :key="place.place_id"
-      :name="place.name"
-      :distance="place.distance"
-      @click="getPlaceDetails(place.place_id)"
-    >
-      <span>{{ place.name }}</span>
-      <span class="distance">{{ place.distance }} mi</span>
-    </li>
-  </ul>
+  <div>
+    <ul>
+      <li
+        v-for="place in places"
+        :key="place.place_id"
+        :name="place.name"
+        :distance="place.distance"
+        @click="getPlaceDetails(place.place_id)"
+      >
+        <span>{{ place.name }}</span>
+        <span class="distance">{{ place.distance }} mi</span>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <button v-if="nextPageToken" @click="loadMorePlaces(nextPageToken)">
+      Load More Places
+    </button>
+  </div>
 </template>
 
 <script>
@@ -18,24 +25,69 @@ import store from '../store/index.js';
 import axios from 'axios';
 
 export default {
-  inject: ['showPlaceDetailsModal'],
+  inject: [
+    'showPlaceDetailsModal',
+    'showSearchModal',
+    'updateSearchModal',
+    'showAlert'
+  ],
   methods: {
     getPlaceDetails(placeId) {
+      this.updateSearchModal('Getting Place Details...');
+      this.showSearchModal(true);
       axios
         .post(`${process.env.VUE_APP_API_URI}/place-details`, {
           placeId: placeId
         })
         .then(response => {
+          this.updateSearchModal('Returning Place Details...');
           this.showPlaceDetailsModal(true, response.data.place_details);
+          this.showSearchModal(false);
         })
         .catch(error => {
           console.log(error);
+          this.showAlert(
+            'error',
+            `Sorry, we couldn't load the place's details.`
+          );
+          this.showSearchModal(false);
+        });
+    },
+    loadMorePlaces(nextPageToken) {
+      this.updateSearchModal('Getting More Places...');
+      this.showSearchModal(true);
+      axios
+        .post(`${process.env.VUE_APP_API_URI}/more-places`, {
+          nextPageToken: nextPageToken
+        })
+        .then(response => {
+          this.updateSearchModal('Loading More Places...');
+          store.commit('updatePlaces', response.data);
+          const placesCount = this.nextPageToken
+            ? `${this.places.length}+`
+            : this.places.length;
+          this.showAlert(
+            'info',
+            `${placesCount} results. Tap each place for more details.`
+          );
+          this.showSearchModal(false);
+        })
+        .catch(error => {
+          console.log(error);
+          this.showAlert(
+            'error',
+            `Sorry, there was a problem with the search.`
+          );
+          this.showSearchModal(false);
         });
     }
   },
   computed: {
     places() {
       return store.state.places;
+    },
+    nextPageToken() {
+      return store.state.nextPageToken;
     }
   }
 };
@@ -43,7 +95,7 @@ export default {
 
 <style scoped>
 ul {
-  margin-top: 0.75rem;
+  margin: 0.75rem 0;
   list-style-type: none;
 }
 li {
@@ -74,5 +126,19 @@ li:hover {
   background-color: #34495e;
   text-align: center;
   font-size: 0.75rem;
+}
+button {
+  width: 100%;
+  margin: 1rem 0;
+  padding: 0.75rem 0.5rem;
+  border: 1px solid #2b3c4e;
+  border-radius: 0.25rem;
+  line-height: 1.2;
+  background-color: #34495e;
+  color: #fff;
+  white-space: nowrap;
+  font-size: 0.9rem;
+  text-decoration: none;
+  cursor: pointer;
 }
 </style>

@@ -57,8 +57,8 @@ export default {
     };
   },
   methods: {
-    showSearchModal(val) {
-      this.searchModal.isVisible = val;
+    showSearchModal(isVisible) {
+      this.searchModal.isVisible = isVisible;
     },
     updateSearchModal(currentStep, searchProgress) {
       this.searchModal.currentStep = currentStep;
@@ -79,28 +79,24 @@ export default {
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cabin&family=Fira+Sans&family=Oxygen&display=swap');
-
 @media screen and (max-width: 576px) {
   #app {
     width: 95%;
     margin-top: 0.75rem;
   }
 }
-
 @media screen and (min-width: 577px) {
   #app {
     width: 75%;
     margin-top: 0.75rem;
   }
 }
-
 @media screen and (min-width: 768px) {
   #app {
     width: 55%;
     margin-top: 0.75rem;
   }
 }
-
 * {
   box-sizing: border-box;
   margin: 0;

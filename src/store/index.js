@@ -11,14 +11,16 @@ const store = createStore({
     places(state) {
       return state.places;
     },
-    // TO-DO: Not sure how to implement this yet
-    hasNextPageToken(state) {
-      return state.nextPageToken && state.nextPageToken;
+    nextPageToken(state) {
+      return state.nextPageToken;
     }
   },
   mutations: {
+    clearPlaces(state) {
+      state.places = [];
+    },
     updatePlaces(state, payload) {
-      state.places = payload.places;
+      state.places.push(...payload.places);
       state.nextPageToken = payload.next_page_token;
     }
   }

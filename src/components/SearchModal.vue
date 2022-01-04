@@ -2,13 +2,12 @@
   <dialog open>
     <div class="search-modal">
       <div class="search-step">{{ currentStep }}</div>
-      <div class="progress-outer">
-        <div
-          class="progress-inner"
-          v-bind:style="{ width: searchProgress + '%' }"
-        >
-          <span class="progress-amount">{{ searchProgress + '%' }}</span>
-        </div>
+      <div class="spinner">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
       </div>
     </div>
   </dialog>
@@ -38,22 +37,64 @@ dialog {
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  background-color: white;
+  background-color: #fff;
 }
 .search-step {
   text-align: center;
+  font-size: 1.2rem;
+  margin: 1rem;
 }
-.progress-outer {
-  margin-top: 0.5rem;
-  background-color: #eee;
-  border-radius: 0.25rem;
-  overflow: hidden;
+.spinner {
+  margin: 0 auto;
+  width: 100px;
+  height: 80px;
+  text-align: center;
 }
-.progress-inner {
-  width: 0;
+.spinner > div {
   background-color: #16a085;
+  height: 100%;
+  width: 10px;
+  margin: 0.1rem;
+  display: inline-block;
+  -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+  animation: sk-stretchdelay 1.2s infinite ease-in-out;
 }
-.progress-amount {
-  visibility: hidden;
+.spinner .rect2 {
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+.spinner .rect3 {
+  -webkit-animation-delay: -1s;
+  animation-delay: -1s;
+}
+.spinner .rect4 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+.spinner .rect5 {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+@-webkit-keyframes sk-stretchdelay {
+  0%,
+  40%,
+  100% {
+    -webkit-transform: scaleY(0.4);
+  }
+  20% {
+    -webkit-transform: scaleY(1);
+  }
+}
+@keyframes sk-stretchdelay {
+  0%,
+  40%,
+  100% {
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4);
+  }
+  20% {
+    transform: scaleY(1);
+    -webkit-transform: scaleY(1);
+  }
 }
 </style>

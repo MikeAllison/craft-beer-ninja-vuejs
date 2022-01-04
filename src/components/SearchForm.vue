@@ -13,7 +13,9 @@
       <button ref="submitBtn">Locate!</button>
     </form>
     <form @submit.prevent="geoSearch">
-      <button class="geo-locate-btn">Use My Location</button>
+      <button class="geo-locate-btn">
+        Use My Location
+      </button>
     </form>
   </div>
 </template>
@@ -31,7 +33,7 @@ export default {
   inject: ['showSearchModal', 'updateSearchModal', 'showAlert'],
   methods: {
     disableUI() {
-      this.updateSearchModal('Beginning Search', 0);
+      this.updateSearchModal('Searching...');
       this.showSearchModal(true);
       this.$refs.searchLocationInput.setAttribute('disabled', true);
       this.$refs.submitBtn.setAttribute('disabled', true);
@@ -51,20 +53,20 @@ export default {
       }
 
       this.disableUI();
-      this.updateSearchModal('Fetching Places', 33);
 
       axios
         .post(`${process.env.VUE_APP_API_URI}/form-search`, {
           searchLocation: this.searchLocation
         })
         .then(response => {
+          this.updateSearchModal('Loading Places...');
+          store.commit('clearPlaces');
           store.commit('updatePlaces', response.data);
-          const placeCount = response.data.next_page_token
-            ? '20+'
-            : response.data.places.length;
           this.showAlert(
             'info',
-            `${placeCount} results. Click each place for more details.`
+            `${this.places.length}${
+              this.nextPageToken ? '+' : ''
+            } results. Click each place for more details.`
           );
           this.enableUI();
         })
@@ -86,7 +88,6 @@ export default {
       }
 
       this.disableUI();
-      this.updateSearchModal('Fetching Places', 33);
 
       navigator.geolocation.getCurrentPosition(
         geoPosition => {
@@ -98,13 +99,14 @@ export default {
               }
             })
             .then(response => {
+              this.updateSearchModal('Loading Places...');
+              store.commit('clearPlaces');
               store.commit('updatePlaces', response.data);
-              const placeCount = response.data.next_page_token
-                ? '20+'
-                : response.data.places.length;
               this.showAlert(
                 'info',
-                `${placeCount} results. Click each place for more details.`
+                `${this.places.length}${
+                  this.nextPageToken ? '+' : ''
+                } results. Click each place for more details.`
               );
               this.enableUI();
             })
@@ -126,6 +128,14 @@ export default {
           this.enableUI();
         }
       );
+    }
+  },
+  computed: {
+    places() {
+      return store.state.places;
+    },
+    nextPageToken() {
+      return store.state.nextPageToken;
     }
   }
 };
