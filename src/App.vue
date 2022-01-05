@@ -34,8 +34,7 @@ export default {
     return {
       searchModal: {
         isVisible: false,
-        currentStep: null,
-        searchProgress: 0
+        currentStep: null
       },
       alert: {
         isVisible: false,
@@ -60,9 +59,8 @@ export default {
     showSearchModal(isVisible) {
       this.searchModal.isVisible = isVisible;
     },
-    updateSearchModal(currentStep, searchProgress) {
+    updateSearchModal(currentStep) {
       this.searchModal.currentStep = currentStep;
-      this.searchModal.searchProgress = searchProgress;
     },
     showAlert(alertType, alertMsg) {
       this.alert.alertType = alertType;
@@ -78,7 +76,7 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cabin&family=Fira+Sans&family=Oxygen&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
 @media screen and (max-width: 576px) {
   #app {
     width: 95%;
@@ -105,7 +103,8 @@ export default {
 body {
   display: flex;
   justify-content: center;
-  font-family: 'Cabin', Arial, Helvetica, sans-serif;
+  font-family: 'Lato', sans-serif;
+  color: #34495e;
 }
 h1,
 h2,

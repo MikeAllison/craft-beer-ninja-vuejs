@@ -1,14 +1,13 @@
 <template>
   <div>
     <form @submit.prevent="formSearch">
-      <label for="search-location">Enter a city, state</label>
       <input
         id="search-location"
         name="search-location"
         type="text"
-        placeholder="New York, NY"
+        :placeholder="lastSearchLocation"
         ref="searchLocationInput"
-        v-model.trim="searchLocation"
+        v-model.trim="searchLocationValue"
       />
       <button ref="submitBtn">Locate!</button>
     </form>
@@ -27,7 +26,7 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      searchLocation: ''
+      searchLocationValue: ''
     };
   },
   inject: ['showSearchModal', 'updateSearchModal', 'showAlert'],
@@ -43,11 +42,11 @@ export default {
       this.$refs.submitBtn.removeAttribute('disabled');
       this.$refs.submitBtn.classList.remove('disabled');
       this.$refs.searchLocationInput.removeAttribute('disabled');
-      this.searchLocation = '';
+      this.searchLocationValue = '';
       this.showSearchModal(false);
     },
     formSearch() {
-      if (this.searchLocation === '') {
+      if (this.searchLocationValue === '') {
         this.showAlert('error', 'Enter a city, state.');
         return;
       }
@@ -56,19 +55,25 @@ export default {
 
       axios
         .post(`${process.env.VUE_APP_API_URI}/form-search`, {
-          searchLocation: this.searchLocation
+          searchLocation: this.searchLocationValue
         })
         .then(response => {
           this.updateSearchModal('Loading Places...');
-          store.commit('clearPlaces');
-          store.commit('updatePlaces', response.data);
+          store.commit('clearSearchResults');
+          store.commit('updateSearchResults', {
+            lastSearchLocation: response.data.formattedAddress,
+            places: response.data.places,
+            nextPageToken: response.data.nextPageToken
+          });
+          const placesCount = `${this.places.length}${
+            this.nextPageToken ? '+' : ''
+          }`;
           this.showAlert(
             'info',
-            `${this.places.length}${
-              this.nextPageToken ? '+' : ''
-            } results. Click each place for more details.`
+            `${placesCount} results. Click each place for more details.`
           );
           this.enableUI();
+          store.commit('saveSearch');
         })
         .catch(error => {
           console.log(error);
@@ -100,15 +105,21 @@ export default {
             })
             .then(response => {
               this.updateSearchModal('Loading Places...');
-              store.commit('clearPlaces');
-              store.commit('updatePlaces', response.data);
+              store.commit('clearSearchResults');
+              store.commit('updateSearchResults', {
+                lastSearchLocation: response.data.formattedAddress,
+                places: response.data.places,
+                nextPageToken: response.data.nextPageToken
+              });
+              const placesCount = `${this.places.length}${
+                this.nextPageToken ? '+' : ''
+              }`;
               this.showAlert(
                 'info',
-                `${this.places.length}${
-                  this.nextPageToken ? '+' : ''
-                } results. Click each place for more details.`
+                `${placesCount} results. Click each place for more details.`
               );
               this.enableUI();
+              store.commit('saveSearch');
             })
             .catch(error => {
               console.log(error);
@@ -131,6 +142,9 @@ export default {
     }
   },
   computed: {
+    lastSearchLocation() {
+      return store.state.lastSearchLocation || 'New York, NY';
+    },
     places() {
       return store.state.places;
     },
@@ -145,15 +159,12 @@ export default {
 * {
   color: #555;
 }
-div {
-  margin-top: 0.75rem;
-}
 form {
-  margin-top: 0.25rem;
   text-align: center;
 }
 input {
   width: 100%;
+  margin: 0.5rem 0;
   border-radius: 0.25rem;
   border: 1px solid #ddd;
   padding: 0.75rem 0.25rem;
@@ -166,7 +177,7 @@ input:focus-visible {
 }
 button {
   width: 100%;
-  margin-top: 0.25rem;
+  margin: 0.25rem 0;
   padding: 0.75rem 0.5rem;
   border: 1px solid #2b3c4e;
   border-radius: 0.25rem;

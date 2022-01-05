@@ -4,16 +4,12 @@
       <li
         v-for="place in places"
         :key="place.place_id"
-        :name="place.name"
-        :distance="place.distance"
         @click="getPlaceDetails(place.place_id)"
       >
         <span>{{ place.name }}</span>
         <span class="distance">{{ place.distance }} mi</span>
       </li>
     </ul>
-  </div>
-  <div>
     <button v-if="nextPageToken" @click="loadMorePlaces(nextPageToken)">
       Load More Places
     </button>
@@ -62,7 +58,10 @@ export default {
         })
         .then(response => {
           this.updateSearchModal('Loading More Places...');
-          store.commit('updatePlaces', response.data);
+          store.commit('updateSearchResults', {
+            places: response.data.places,
+            nextPageToken: response.data.nextPageToken
+          });
           const placesCount = this.nextPageToken
             ? `${this.places.length}+`
             : this.places.length;
@@ -71,6 +70,7 @@ export default {
             `${placesCount} results. Tap each place for more details.`
           );
           this.showSearchModal(false);
+          store.commit('updateLastSearch');
         })
         .catch(error => {
           console.log(error);
@@ -129,7 +129,7 @@ li:hover {
 }
 button {
   width: 100%;
-  margin: 1rem 0;
+  margin-bottom: 0.75rem;
   padding: 0.75rem 0.5rem;
   border: 1px solid #2b3c4e;
   border-radius: 0.25rem;

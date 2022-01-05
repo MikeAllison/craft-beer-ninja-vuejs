@@ -38,6 +38,7 @@ dialog {
   flex-direction: column;
   padding: 1rem;
   background-color: #fff;
+  color: #34495e;
 }
 .search-step {
   text-align: center;

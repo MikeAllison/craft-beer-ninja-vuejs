@@ -1,24 +1,31 @@
 <template>
-  <ul>
-    <li
-      v-for="recentSearch in recentSearches"
-      :key="recentSearch.id"
-      :name="recentSearch.name"
-      :placesCount="recentSearch.placesCount"
-    >
-      <span>{{ recentSearch.name }}</span>
-      <span class="placesCount">{{ recentSearch.placesCount }}</span>
-    </li>
-  </ul>
+  <div>
+    <h3 v-if="!recentSearches">Search to Add a Location to This List</h3>
+    <ul v-if="recentSearches">
+      <li v-for="recentSearch in recentSearches" :key="recentSearch.id">
+        <span>{{ recentSearch.savedSearchLocation }}</span>
+        <span class="placesCount">{{ recentSearch.placesCount }}</span>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
+import store from '../store/index.js';
+
 export default {
-  inject: ['recentSearches']
+  computed: {
+    recentSearches() {
+      return store.state.recentSearches;
+    }
+  }
 };
 </script>
 
 <style scoped>
+h3 {
+  margin-top: 1rem;
+}
 ul {
   margin-top: 0.75rem;
   list-style-type: none;

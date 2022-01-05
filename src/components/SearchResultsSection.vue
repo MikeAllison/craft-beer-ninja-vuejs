@@ -27,17 +27,7 @@ export default {
   },
   data() {
     return {
-      selectedTab: 'results-list',
-      recentSearches: [
-        { id: '1', name: 'New York, NY', placesCount: 50 },
-        { id: '2', name: 'Woodside, NY', placesCount: 40 },
-        { id: '3', name: 'Brooklyn, NY', placesCount: 30 }
-      ]
-    };
-  },
-  provide() {
-    return {
-      recentSearches: this.recentSearches
+      selectedTab: 'results-list'
     };
   },
   methods: {
