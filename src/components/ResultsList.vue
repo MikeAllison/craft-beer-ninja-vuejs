@@ -101,6 +101,7 @@ ul {
 li {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   border: 1px solid #ddd;
   border-bottom: none;
   padding: 0.5rem;
