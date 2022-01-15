@@ -2,7 +2,11 @@
   <div>
     <h3 v-if="!recentSearches">Search to Add a Location to This List</h3>
     <ul v-if="recentSearches">
-      <li v-for="recentSearch in recentSearches" :key="recentSearch.id">
+      <li
+        v-for="recentSearch in recentSearches"
+        :key="recentSearch.id"
+        @click="savedPlaceSearch"
+      >
         <span>{{ recentSearch.savedSearchLocation }}</span>
         <span class="placesCount">{{ recentSearch.placesCount }}</span>
       </li>
@@ -12,8 +16,45 @@
 
 <script>
 import store from '../store/index.js';
+import axios from 'axios';
 
 export default {
+  methods: {
+    savedPlaceSearch() {
+      this.disableUI();
+
+      axios
+        .post(`${process.env.VUE_APP_API_URI}/form-search`, {
+          searchLocation: this.searchLocationValue
+        })
+        .then(response => {
+          this.updateSearchModal('Loading Places...');
+          store.commit('clearSearchResults');
+          store.commit('updateSearchResults', {
+            lastSearchLocation: response.data.formattedAddress,
+            places: response.data.places,
+            nextPageToken: response.data.nextPageToken
+          });
+          const placesCount = `${this.places.length}${
+            this.nextPageToken ? '+' : ''
+          }`;
+          this.showAlert(
+            'info',
+            `${placesCount} results. Click each place for more details.`
+          );
+          this.enableUI();
+          store.commit('saveSearch');
+        })
+        .catch(error => {
+          console.log(error);
+          this.showAlert(
+            'error',
+            `Sorry, there was a problem with the search.`
+          );
+          this.enableUI();
+        });
+    }
+  },
   computed: {
     recentSearches() {
       return store.state.recentSearches;
