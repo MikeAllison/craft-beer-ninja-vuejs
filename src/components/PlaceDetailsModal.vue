@@ -74,7 +74,13 @@ a {
   text-decoration: none;
 }
 ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   list-style-type: none;
+}
+li {
+  padding: 0 0.5rem;
 }
 button {
   width: 100%;
