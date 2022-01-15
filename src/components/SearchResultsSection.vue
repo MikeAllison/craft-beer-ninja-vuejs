@@ -34,6 +34,11 @@ export default {
     setSelectedTab(tab) {
       this.selectedTab = tab;
     }
+  },
+  provide() {
+    return {
+      setSelectedTab: this.setSelectedTab
+    };
   }
 };
 </script>

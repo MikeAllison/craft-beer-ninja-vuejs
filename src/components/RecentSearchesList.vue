@@ -5,7 +5,7 @@
       <li
         v-for="recentSearch in recentSearches"
         :key="recentSearch.id"
-        @click="savedPlaceSearch"
+        @click="savedPlaceSearch(recentSearch.savedSearchLocation)"
       >
         <span>{{ recentSearch.savedSearchLocation }}</span>
         <span class="placesCount">{{ recentSearch.placesCount }}</span>
@@ -19,13 +19,26 @@ import store from '../store/index.js';
 import axios from 'axios';
 
 export default {
+  inject: [
+    'showSearchModal',
+    'updateSearchModal',
+    'showAlert',
+    'setSelectedTab'
+  ],
   methods: {
-    savedPlaceSearch() {
+    disableUI() {
+      this.updateSearchModal('Searching...');
+      this.showSearchModal(true);
+    },
+    enableUI() {
+      this.showSearchModal(false);
+    },
+    savedPlaceSearch(savedSearchLocation) {
       this.disableUI();
 
       axios
         .post(`${process.env.VUE_APP_API_URI}/form-search`, {
-          searchLocation: this.searchLocationValue
+          searchLocation: savedSearchLocation
         })
         .then(response => {
           this.updateSearchModal('Loading Places...');
@@ -42,6 +55,7 @@ export default {
             'info',
             `${placesCount} results. Click each place for more details.`
           );
+          this.setSelectedTab('results-list');
           this.enableUI();
           store.commit('saveSearch');
         })
@@ -58,6 +72,9 @@ export default {
   computed: {
     recentSearches() {
       return store.state.recentSearches;
+    },
+    places() {
+      return store.state.places;
     }
   }
 };
