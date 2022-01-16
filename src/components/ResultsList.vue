@@ -1,4 +1,5 @@
 <template>
+  <img v-if="places.length === 0" src="../../public/beer-hefe.svg">
   <ul>
     <li
       v-for="place in places"
@@ -124,6 +125,10 @@ export default {
 </script>
 
 <style scoped>
+img {
+  margin-top: 4rem;
+  filter: invert(5%);
+}
 ul {
   margin: 0.75rem 0;
   list-style-type: none;
@@ -148,6 +153,29 @@ li:last-child {
 }
 li:hover {
   background-color: #121212;
+}
+button {
+  width: 100%;
+  margin-bottom: 0.75rem;
+  padding: 0.75rem 0.5rem;
+  border: 0;
+  background-color: #adaf11;
+  border-radius: 0.25rem;
+  line-height: 1.2;
+  color: #000;
+  white-space: nowrap;
+  font-size: 0.9rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+.distance {
+  min-width: 45px;
+  border-radius: 0.25rem;
+  padding: 0.25rem;
+  color: #000;
+  background-color: #adaf11;
+  text-align: center;
+  font-size: 0.75rem;
 }
 .spinner {
   margin: auto 0;
@@ -190,28 +218,5 @@ li:hover {
     -webkit-transform: scale(1);
     transform: scale(1);
   }
-}
-.distance {
-  min-width: 45px;
-  border-radius: 0.25rem;
-  padding: 0.25rem;
-  color: #000;
-  background-color: #adaf11;
-  text-align: center;
-  font-size: 0.75rem;
-}
-button {
-  width: 100%;
-  margin-bottom: 0.75rem;
-  padding: 0.75rem 0.5rem;
-  border: 0;
-  background-color: #adaf11;
-  border-radius: 0.25rem;
-  line-height: 1.2;
-  color: #000;
-  white-space: nowrap;
-  font-size: 0.9rem;
-  text-decoration: none;
-  cursor: pointer;
 }
 </style>

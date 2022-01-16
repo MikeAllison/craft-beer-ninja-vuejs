@@ -9,7 +9,7 @@
       ref="searchLocationInput"
       v-model.trim="searchLocationValue"
     />
-    <button ref="submitBtn">Locate!</button>
+    <button ref="submitBtn"><img src="../../public/geolocation.svg">Locate!</button>
   </form>
   <form @submit.prevent="geoSearch">
     <button class="geo-locate-btn">
@@ -223,16 +223,18 @@ input:target {
   border: 1px solid #666 !important;
 }
 button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  margin: 0.25rem 0;
+  margin: 0.5rem 0;
   padding: 0.75rem 0.5rem;
   border: 0;
   background-color: #adaf11;
   border-radius: 0.25rem;
-  line-height: 1.2;
   color: #000;
   white-space: nowrap;
-  font-size: 0.9rem;
+  font-size: 1rem;
   text-decoration: none;
   cursor: pointer;
 }
@@ -243,5 +245,9 @@ button.geo-locate-btn {
 }
 button.disabled {
   opacity: 0.7;
+}
+button > img {
+  width: 1rem;
+  margin-right: 0.25rem;
 }
 </style>

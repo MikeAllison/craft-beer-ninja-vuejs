@@ -9,7 +9,10 @@
       v-bind="placeDetailsModal"
     ></place-details-modal>
   </teleport>
-  <h2>Craft Beer Ninja</h2>
+  <div class="brand">
+    <img src="../public/ninja.svg">
+    <h2>Craft Beer Ninja</h2>
+  </div>
   <search-form></search-form>
   <alert-box v-if="alert.isVisible" v-bind="alert"></alert-box>
   <search-results-section></search-results-section>
@@ -114,5 +117,16 @@ h4,
 h5,
 h6 {
   text-align: center;
+}
+.brand {
+  display: flex;
+  justify-content: center;
+}
+.brand > * {
+  margin: 0 0.25rem;
+}
+.brand > img {
+  width: 30px;
+  filter: invert(100%)
 }
 </style>

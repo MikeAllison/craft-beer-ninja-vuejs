@@ -1,6 +1,7 @@
 <template>
   <dialog open>
     <div class="place-details-modal">
+      <img src="../../public/ninja.svg">
       <h2>{{ placeDetails.name }}</h2>
       <hr />
       <h4>Open Now:</h4>
@@ -63,15 +64,21 @@ dialog {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
   border: 0;
   background-color: rgba(0, 0, 0, 0.75);
+}
+img {
+  width: 3rem;
+  filter: invert(100%);
+  margin: 0.5rem 0;
 }
 h2 {
   color: #adaf11;
 }
 hr {
   margin: 1rem 0;
-  border: 1px solid #2a2a2a;
+  border: 1px solid #222222;
 }
 p {
   margin-bottom: 1rem;
@@ -96,7 +103,6 @@ button {
   border: 0;
   background-color: #adaf11;
   border-radius: 0.25rem;
-  line-height: 1.2;
   color: #000;
   white-space: nowrap;
   font-size: 0.9rem;
@@ -105,15 +111,12 @@ button {
 }
 .place-details-modal {
   width: 90%;
-  display: flex;
-  flex-direction: column;
   border-radius: 0.25rem;
   padding: 1rem;
   background-color: #121212;
   color: #bbb;
 }
 .place-details-modal > * {
-  text-align: center;
   line-height: 1.4rem;
 }
 .today {

@@ -10,7 +10,7 @@ export default {
 
 <style scoped>
 div {
-  margin-top: 0.75rem;
+  margin-top: 1rem;
   border-radius: 0.25rem;
   padding: 0.75rem 0.25rem;
   text-align: center;

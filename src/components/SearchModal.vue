@@ -1,6 +1,9 @@
 <template>
   <dialog open>
     <div class="search-modal">
+      <div class="logo">
+        <img src="../../public/ninja.svg">
+      </div>
       <div class="search-step">{{ currentStep }}</div>
       <div class="spinner">
         <div class="rect1"></div>
@@ -32,30 +35,38 @@ dialog {
   border: 0;
   background-color: rgba(0, 0, 0, 0.75);
 }
+img {
+  width: 3rem;
+  filter: invert(100%);
+  margin: 0.5rem 0;
+}
+.logo {
+  text-align: center;
+}
 .search-modal {
   width: 90%;
   display: flex;
   flex-direction: column;
+  text-align: center;
   border-radius: 0.25rem;
   padding: 1rem;
   background-color: #121212;
   color: #bbb;
 }
-.search-step {
-  text-align: center;
+.search-step { 
   font-size: 1.2rem;
   margin: 1rem;
 }
 .spinner {
   margin: 0 auto;
-  width: 100px;
-  height: 80px;
+  width: 5rem;
+  height: 5rem;
   text-align: center;
 }
 .spinner > div {
   background-color: #adaf11;
   height: 100%;
-  width: 10px;
+  width: 0.5rem;
   margin: 0.1rem;
   display: inline-block;
   -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
