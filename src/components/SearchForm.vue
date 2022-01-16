@@ -29,7 +29,7 @@ export default {
       searchLocationValue: ''
     };
   },
-  inject: ['showSearchModal', 'updateSearchModal', 'showAlert'],
+  inject: ['showSearchModal', 'updateSearchModal', 'showAlert', 'setActiveList'],
   methods: {
     disableUI() {
       this.updateSearchModal('Searching...');
@@ -70,6 +70,7 @@ export default {
             'info',
             `${placesCount} results. Click each place for more details.`
           );
+          this.setActiveList('results-list');
           this.enableUI();
         })
         .then(() => {
@@ -135,6 +136,7 @@ export default {
                 'info',
                 `${placesCount} results. Click each place for more details.`
               );
+              this.setActiveList('results-list');
               this.enableUI();
             })
             .then(() => {

@@ -3,6 +3,7 @@ import { createStore } from 'vuex';
 const store = createStore({
   state() {
     return {
+      activeList: 'results-list',
       recentSearches: JSON.parse(localStorage.getItem('recentSearches')),
       lastSearchLocation: {
         coordinates: null,
@@ -13,6 +14,9 @@ const store = createStore({
     };
   },
   getters: {
+    activeList(state) {
+      return state.activeList;
+    },
     recentSearches(state) {
       return state.recentSearches;
     },
@@ -27,6 +31,9 @@ const store = createStore({
     }
   },
   mutations: {
+    setActiveList(state, payload) {
+      state.activeList = payload.listName;
+    },
     clearSearchResults(state) {
       state.lastSearchLocation = null;
       state.places = [];

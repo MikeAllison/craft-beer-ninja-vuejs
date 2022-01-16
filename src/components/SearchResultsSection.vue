@@ -1,22 +1,23 @@
 <template>
   <ul class="menu">
     <li
-      @click="setSelectedTab('results-list')"
-      :class="{ selected: this.selectedTab === 'results-list' }"
+      @click="setActiveList('results-list')"
+      :class="{ selected: this.activeList === 'results-list' }"
     >
       Results
     </li>
     <li
-      @click="setSelectedTab('recent-searches-list')"
-      :class="{ selected: this.selectedTab === 'recent-searches-list' }"
+      @click="setActiveList('recent-searches-list')"
+      :class="{ selected: this.activeList === 'recent-searches-list' }"
     >
       Recent Searches
     </li>
   </ul>
-  <component :is="selectedTab"></component>
+  <component :is="activeList"></component>
 </template>
 
 <script>
+import store from '../store/index.js';
 import ResultsList from './ResultsList.vue';
 import RecentSearchesList from './RecentSearchesList.vue';
 
@@ -25,21 +26,12 @@ export default {
     ResultsList,
     RecentSearchesList
   },
-  data() {
-    return {
-      selectedTab: 'results-list'
-    };
-  },
-  methods: {
-    setSelectedTab(tab) {
-      this.selectedTab = tab;
+  inject: ['setActiveList'],
+  computed: {
+    activeList() {
+      return store.state.activeList;
     }
   },
-  provide() {
-    return {
-      setSelectedTab: this.setSelectedTab
-    };
-  }
 };
 </script>
 

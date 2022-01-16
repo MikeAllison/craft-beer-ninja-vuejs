@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import store from './store/index.js';
 import SearchModal from './components/SearchModal.vue';
 import SearchForm from './components/SearchForm.vue';
 import AlertBox from './components/AlertBox.vue';
@@ -55,7 +56,8 @@ export default {
       showSearchModal: this.showSearchModal,
       updateSearchModal: this.updateSearchModal,
       showAlert: this.showAlert,
-      showPlaceDetailsModal: this.showPlaceDetailsModal
+      showPlaceDetailsModal: this.showPlaceDetailsModal,
+      setActiveList: this.setActiveList
     };
   },
   methods: {
@@ -73,6 +75,11 @@ export default {
     showPlaceDetailsModal(shown, placeDetails) {
       this.placeDetailsModal.placeDetails = placeDetails;
       this.placeDetailsModal.isVisible = shown;
+    },
+    setActiveList(listName) {
+      store.commit('setActiveList', {
+        listName: listName
+      })
     }
   }
 };

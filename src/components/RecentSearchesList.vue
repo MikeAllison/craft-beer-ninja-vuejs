@@ -21,7 +21,7 @@ export default {
     'showSearchModal',
     'updateSearchModal',
     'showAlert',
-    'setSelectedTab'
+    'setActiveList'
   ],
   methods: {
     disableUI() {
@@ -52,7 +52,7 @@ export default {
             'info',
             `${placesCount} results. Click each place for more details.`
           );
-          this.setSelectedTab('results-list');
+          this.setActiveList('results-list');
           this.enableUI();
         })
         .then(() => {
