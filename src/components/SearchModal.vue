@@ -29,7 +29,7 @@ dialog {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: none;
+  border: 0;
   background-color: rgba(0, 0, 0, 0.75);
 }
 .search-modal {
@@ -39,7 +39,7 @@ dialog {
   border-radius: 0.25rem;
   padding: 1rem;
   background-color: #121212;
-  color: #fff;
+  color: #bbb;
 }
 .search-step {
   text-align: center;
@@ -53,7 +53,7 @@ dialog {
   text-align: center;
 }
 .spinner > div {
-  background-color: #16a0859e;
+  background-color: #adaf11;
   height: 100%;
   width: 10px;
   margin: 0.1rem;

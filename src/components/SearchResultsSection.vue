@@ -53,13 +53,13 @@ ul.menu {
 ul.menu > li {
   display: inline;
   padding: 0.5rem 0.5rem;
-  color: #fff;
+  color: #bbb;
 }
 .selected {
   border: 1px solid #333;
   border-bottom: 2px solid #333;
   border-radius: 0.25rem 0.25rem 0 0;
   background-color: #333;
-  color: #fff !important;
+  color: #bbb !important;
 }
 </style>

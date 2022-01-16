@@ -135,7 +135,7 @@ li {
   border: 1px solid #333;
   border-bottom: none;
   padding: 0.5rem;
-  color: #fff;
+  color: #bbb;
 }
 li:first-child {
   border-top-left-radius: 0.25rem;
@@ -156,7 +156,7 @@ li:hover {
   height: 8px;
   width: 6px;
   margin: 1px;
-  background-color: #fff;
+  background-color: #bbb;
   display: inline-block;
   -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
   animation: sk-bouncedelay 1.4s infinite ease-in-out both;
@@ -195,8 +195,8 @@ li:hover {
   min-width: 45px;
   border-radius: 0.25rem;
   padding: 0.25rem;
-  color: #fff;
-  background-color: #16a0859e;
+  color: #000;
+  background-color: #adaf11;
   text-align: center;
   font-size: 0.75rem;
 }
@@ -204,12 +204,11 @@ button {
   width: 100%;
   margin-bottom: 0.75rem;
   padding: 0.75rem 0.5rem;
-  border: 1px solid #2b3c4e;
+  border: 0;
+  background-color: #adaf11;
   border-radius: 0.25rem;
   line-height: 1.2;
-  border: 1px solid #1178649e;
-  background-color: #16a0859e;
-  color: #fff;
+  color: #000;
   white-space: nowrap;
   font-size: 0.9rem;
   text-decoration: none;

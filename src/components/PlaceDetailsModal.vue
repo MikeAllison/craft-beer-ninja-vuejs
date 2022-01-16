@@ -26,7 +26,8 @@
         <li
           v-for="(dailyHours, index) in placeDetails.opening_hours.weekday_text"
           :key="dailyHours"
-          :class="{ today: index + 1 === today.getDay() }"
+          :i="index"
+          :class="{ today: index === today }"
         >
           {{ dailyHours }}
         </li>
@@ -43,7 +44,10 @@ export default {
   inject: ['showPlaceDetailsModal'],
   computed: {
     today() {
-      return new Date();
+      let t = new Date();
+      t = t.getDay() - 1;
+      t === -1 ? (t = 6) : t;
+      return t;
     }
   }
 };
@@ -59,8 +63,11 @@ dialog {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: none;
+  border: 0;
   background-color: rgba(0, 0, 0, 0.75);
+}
+h2 {
+  color: #adaf11;
 }
 hr {
   margin: 1rem 0;
@@ -70,7 +77,7 @@ p {
   margin-bottom: 1rem;
 }
 a {
-  color: #2a9179;
+  color: #adaf11;
   text-decoration: none;
 }
 ul {
@@ -86,11 +93,11 @@ button {
   width: 100%;
   margin-top: 0.25rem;
   padding: 0.75rem 0.5rem;
-  border: 1px solid #1178649e;
-  background-color: #16a0859e;
+  border: 0;
+  background-color: #adaf11;
   border-radius: 0.25rem;
   line-height: 1.2;
-  color: #fff;
+  color: #000;
   white-space: nowrap;
   font-size: 0.9rem;
   text-decoration: none;
@@ -103,14 +110,14 @@ button {
   border-radius: 0.25rem;
   padding: 1rem;
   background-color: #121212;
-  color: #fff;
+  color: #bbb;
 }
 .place-details-modal > * {
   text-align: center;
   line-height: 1.4rem;
 }
 .today {
-  background-color: #16a0859e;
-  color: #fff;
+  background-color: #adaf11;
+  color: #121212;
 }
 </style>

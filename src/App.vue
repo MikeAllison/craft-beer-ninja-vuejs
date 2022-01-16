@@ -105,7 +105,7 @@ body {
   justify-content: center;
   font-family: 'Lato', sans-serif;
   background-color: #000;
-  color: #fff;
+  color: #fdfdfd;
 }
 h1,
 h2,

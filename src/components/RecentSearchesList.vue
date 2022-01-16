@@ -113,7 +113,7 @@ li {
   border: 1px solid #333;
   border-bottom: none;
   padding: 0.5rem;
-  color: #fff;
+  color: #bbb;
 }
 li:first-child {
   border-top-left-radius: 0.25rem;
@@ -131,8 +131,8 @@ li:hover {
   min-width: 30px;
   border-radius: 0.25rem;
   padding: 0.25rem;
-  color: #fff;
-  background-color: #16a0859e;
+  color: #000;
+  background-color: #adaf11;
   text-align: center;
   font-size: 0.75rem;
 }

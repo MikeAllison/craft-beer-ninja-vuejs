@@ -198,6 +198,7 @@ export default {
 }
 h4 {
   margin-top: 0.5rem;
+  color: #adaf11;
 }
 form {
   text-align: center;
@@ -208,7 +209,7 @@ input {
   border-radius: 0.25rem;
   border: 1px solid #333;
   background-color: #333;
-  color: #fff;
+  color: #bbb;
   padding: 0.75rem 0.25rem;
   text-align: center;
   font-size: 0.95rem;
@@ -225,11 +226,11 @@ button {
   width: 100%;
   margin: 0.25rem 0;
   padding: 0.75rem 0.5rem;
-  border: 1px solid #1178649e;
-  background-color: #16a0859e;
+  border: 0;
+  background-color: #adaf11;
   border-radius: 0.25rem;
   line-height: 1.2;
-  color: #fff;
+  color: #000;
   white-space: nowrap;
   font-size: 0.9rem;
   text-decoration: none;
@@ -238,6 +239,7 @@ button {
 button.geo-locate-btn {
   border-color: #2a2a2a;
   background-color: #333;
+  color: #bbb;
 }
 button.disabled {
   opacity: 0.7;
