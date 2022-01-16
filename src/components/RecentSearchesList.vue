@@ -35,7 +35,6 @@ export default {
     },
     savedPlaceSearch(savedSearchLocation) {
       this.disableUI();
-
       axios
         .post(`${process.env.VUE_APP_API_URI}/form-search`, {
           searchLocation: savedSearchLocation
@@ -44,7 +43,7 @@ export default {
           this.updateSearchModal('Loading Places...');
           store.commit('clearSearchResults');
           store.commit('updateSearchResults', {
-            lastSearchLocation: response.data.formattedAddress,
+            lastSearchLocation: response.data.searchLocation,
             places: response.data.places,
             nextPageToken: response.data.nextPageToken
           });
@@ -57,6 +56,27 @@ export default {
           );
           this.setSelectedTab('results-list');
           this.enableUI();
+        })
+        .then(() => {
+          // Start Distance Matrix Search
+          axios
+            .post(`${process.env.VUE_APP_API_URI}/place-distances`, {
+              origin: {
+                lat: store.state.lastSearchLocation.coordinates.lat,
+                lng: store.state.lastSearchLocation.coordinates.lng
+              },
+              destinations: store.state.places
+            })
+            .then(response => {
+              store.commit('updatePlaceDistances', {
+                placeDistances: response.data.place_distances
+              });
+            })
+            .catch(error => {
+              console.log(error);
+            });
+        })
+        .then(() => {
           store.commit('saveSearch');
         })
         .catch(error => {

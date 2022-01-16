@@ -5,7 +5,7 @@
         id="search-location"
         name="search-location"
         type="text"
-        :placeholder="lastSearchLocation"
+        :placeholder="lastSearchLocation.formattedAddress"
         ref="searchLocationInput"
         v-model.trim="searchLocationValue"
       />
@@ -50,9 +50,7 @@ export default {
         this.showAlert('error', 'Enter a city, state.');
         return;
       }
-
       this.disableUI();
-
       axios
         .post(`${process.env.VUE_APP_API_URI}/form-search`, {
           searchLocation: this.searchLocationValue
@@ -61,7 +59,7 @@ export default {
           this.updateSearchModal('Loading Places...');
           store.commit('clearSearchResults');
           store.commit('updateSearchResults', {
-            lastSearchLocation: response.data.formattedAddress,
+            lastSearchLocation: response.data.searchLocation,
             places: response.data.places,
             nextPageToken: response.data.nextPageToken
           });
@@ -73,6 +71,27 @@ export default {
             `${placesCount} results. Click each place for more details.`
           );
           this.enableUI();
+        })
+        .then(() => {
+          // Start Distance Matrix Search
+          axios
+            .post(`${process.env.VUE_APP_API_URI}/place-distances`, {
+              origin: {
+                lat: store.state.lastSearchLocation.coordinates.lat,
+                lng: store.state.lastSearchLocation.coordinates.lng
+              },
+              destinations: store.state.places
+            })
+            .then(response => {
+              store.commit('updatePlaceDistances', {
+                placeDistances: response.data.place_distances
+              });
+            })
+            .catch(error => {
+              console.log(error);
+            });
+        })
+        .then(() => {
           store.commit('saveSearch');
         })
         .catch(error => {
@@ -91,9 +110,7 @@ export default {
           `Sorry, your browser doesn't support geolocation.`
         );
       }
-
       this.disableUI();
-
       navigator.geolocation.getCurrentPosition(
         geoPosition => {
           axios
@@ -107,7 +124,7 @@ export default {
               this.updateSearchModal('Loading Places...');
               store.commit('clearSearchResults');
               store.commit('updateSearchResults', {
-                lastSearchLocation: response.data.formattedAddress,
+                lastSearchLocation: response.data.searchLocation,
                 places: response.data.places,
                 nextPageToken: response.data.nextPageToken
               });
@@ -119,6 +136,27 @@ export default {
                 `${placesCount} results. Click each place for more details.`
               );
               this.enableUI();
+            })
+            .then(() => {
+              // Start Distance Matrix Search
+              axios
+                .post(`${process.env.VUE_APP_API_URI}/place-distances`, {
+                  origin: {
+                    lat: store.state.lastSearchLocation.coordinates.lat,
+                    lng: store.state.lastSearchLocation.coordinates.lng
+                  },
+                  destinations: store.state.places
+                })
+                .then(response => {
+                  store.commit('updatePlaceDistances', {
+                    placeDistances: response.data.place_distances
+                  });
+                })
+                .catch(error => {
+                  console.log(error);
+                });
+            })
+            .then(() => {
               store.commit('saveSearch');
             })
             .catch(error => {
@@ -143,7 +181,7 @@ export default {
   },
   computed: {
     lastSearchLocation() {
-      return store.state.lastSearchLocation || 'New York, NY';
+      return store.state.lastSearchLocation;
     },
     places() {
       return store.state.places;

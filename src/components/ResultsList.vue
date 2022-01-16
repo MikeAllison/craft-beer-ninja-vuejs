@@ -7,7 +7,14 @@
         @click="getPlaceDetails(place.place_id)"
       >
         <span>{{ place.name }}</span>
-        <span class="distance">{{ place.distance }} mi</span>
+        <span class="distance">
+          <div v-if="!place.distance" class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+          </div>
+          <div v-else>{{ place.distance }}</div>
+        </span>
       </li>
     </ul>
     <button v-if="nextPageToken" @click="loadMorePlaces(nextPageToken)">
@@ -72,6 +79,31 @@ export default {
           this.showSearchModal(false);
           store.commit('updateLastSearch');
         })
+        .then(() => {
+          const newDestinations = [];
+          store.state.places.forEach(place => {
+            if (!place.distance) {
+              newDestinations.push(place);
+            }
+          });
+          // Start Distance Matrix Search
+          axios
+            .post(`${process.env.VUE_APP_API_URI}/place-distances`, {
+              origin: {
+                lat: store.state.lastSearchLocation.coordinates.lat,
+                lng: store.state.lastSearchLocation.coordinates.lng
+              },
+              destinations: newDestinations
+            })
+            .then(response => {
+              store.commit('updatePlaceDistances', {
+                placeDistances: response.data.place_distances
+              });
+            })
+            .catch(error => {
+              console.log(error);
+            });
+        })
         .catch(error => {
           console.log(error);
           this.showAlert(
@@ -118,6 +150,48 @@ li:last-child {
 }
 li:hover {
   background-color: #f9f9f9;
+}
+.spinner {
+  margin: auto 0;
+}
+.spinner > div {
+  height: 8px;
+  width: 6px;
+  margin: 1px;
+  background-color: #fff;
+  display: inline-block;
+  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+.spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+.spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+@-webkit-keyframes sk-bouncedelay {
+  0%,
+  80%,
+  100% {
+    -webkit-transform: scale(0);
+  }
+  40% {
+    -webkit-transform: scale(1);
+  }
+}
+@keyframes sk-bouncedelay {
+  0%,
+  80%,
+  100% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  40% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
 }
 .distance {
   min-width: 45px;
