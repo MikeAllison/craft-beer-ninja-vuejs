@@ -13,6 +13,7 @@
   </form>
   <form @submit.prevent="geoSearch">
     <button class="geo-locate-btn">
+      <img src="../../public/compass.svg">
       Use My Location
     </button>
   </form>
@@ -238,16 +239,19 @@ button {
   text-decoration: none;
   cursor: pointer;
 }
+button > img {
+  width: 1rem;
+  margin-right: 0.4rem;
+}
 button.geo-locate-btn {
   border-color: #2a2a2a;
   background-color: #333;
   color: #bbb;
 }
+button.geo-locate-btn > img {
+  filter: invert(90%);
+}
 button.disabled {
   opacity: 0.7;
-}
-button > img {
-  width: 1rem;
-  margin-right: 0.25rem;
 }
 </style>
