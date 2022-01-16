@@ -48,18 +48,18 @@ ul.menu {
   margin-top: 0.75rem;
   padding: 0.54rem;
   padding-left: 0;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #333;
 }
 ul.menu > li {
   display: inline;
   padding: 0.5rem 0.5rem;
-  color: #16a085;
+  color: #fff;
 }
 .selected {
-  border: 1px solid #ddd;
-  border-bottom: 2px solid #fff;
+  border: 1px solid #333;
+  border-bottom: 2px solid #333;
   border-radius: 0.25rem 0.25rem 0 0;
-  background-color: white;
-  color: #555 !important;
+  background-color: #333;
+  color: #fff !important;
 }
 </style>

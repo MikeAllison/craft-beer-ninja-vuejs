@@ -36,9 +36,10 @@ dialog {
   width: 90%;
   display: flex;
   flex-direction: column;
+  border-radius: 0.25rem;
   padding: 1rem;
-  background-color: #fff;
-  color: #34495e;
+  background-color: #121212;
+  color: #fff;
 }
 .search-step {
   text-align: center;
@@ -52,7 +53,7 @@ dialog {
   text-align: center;
 }
 .spinner > div {
-  background-color: #16a085;
+  background-color: #16a0859e;
   height: 100%;
   width: 10px;
   margin: 0.1rem;

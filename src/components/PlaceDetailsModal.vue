@@ -64,13 +64,13 @@ dialog {
 }
 hr {
   margin: 1rem 0;
-  border: 1px solid #ddd;
+  border: 1px solid #2a2a2a;
 }
 p {
   margin-bottom: 1rem;
 }
 a {
-  color: #16a085;
+  color: #2a9179;
   text-decoration: none;
 }
 ul {
@@ -86,8 +86,8 @@ button {
   width: 100%;
   margin-top: 0.25rem;
   padding: 0.75rem 0.5rem;
-  background-color: #95a5a6;
-  border: 1px solid #87999a;
+  border: 1px solid #1178649e;
+  background-color: #16a0859e;
   border-radius: 0.25rem;
   line-height: 1.2;
   color: #fff;
@@ -100,15 +100,17 @@ button {
   width: 90%;
   display: flex;
   flex-direction: column;
+  border-radius: 0.25rem;
   padding: 1rem;
-  background-color: white;
+  background-color: #121212;
+  color: #fff;
 }
 .place-details-modal > * {
   text-align: center;
   line-height: 1.4rem;
 }
 .today {
-  background-color: #16a085;
-  color: white;
+  background-color: #16a0859e;
+  color: #fff;
 }
 </style>

@@ -1,17 +1,15 @@
 <template>
-  <div>
-    <h3 v-if="!recentSearches">Search to Add a Location to This List</h3>
-    <ul v-if="recentSearches">
-      <li
-        v-for="recentSearch in recentSearches"
-        :key="recentSearch.id"
-        @click="savedPlaceSearch(recentSearch.savedSearchLocation)"
-      >
-        <span>{{ recentSearch.savedSearchLocation }}</span>
-        <span class="placesCount">{{ recentSearch.placesCount }}</span>
-      </li>
-    </ul>
-  </div>
+  <h3 v-if="!recentSearches">Search to Add a Location to This List</h3>
+  <ul v-if="recentSearches">
+    <li
+      v-for="recentSearch in recentSearches"
+      :key="recentSearch.id"
+      @click="savedPlaceSearch(recentSearch.savedSearchLocation)"
+    >
+      <span>{{ recentSearch.savedSearchLocation }}</span>
+      <span class="placesCount">{{ recentSearch.placesCount }}</span>
+    </li>
+  </ul>
 </template>
 
 <script>
@@ -112,29 +110,29 @@ li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid #ddd;
+  border: 1px solid #333;
   border-bottom: none;
   padding: 0.5rem;
-  color: #555;
+  color: #fff;
 }
 li:first-child {
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
 }
 li:last-child {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #333;
   border-bottom-left-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
 }
 li:hover {
-  background-color: #f9f9f9;
+  background-color: #121212;
 }
 .placesCount {
   min-width: 30px;
   border-radius: 0.25rem;
   padding: 0.25rem;
   color: #fff;
-  background-color: #34495e;
+  background-color: #16a0859e;
   text-align: center;
   font-size: 0.75rem;
 }

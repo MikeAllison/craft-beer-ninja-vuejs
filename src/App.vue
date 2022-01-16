@@ -9,7 +9,7 @@
       v-bind="placeDetailsModal"
     ></place-details-modal>
   </teleport>
-  <h2>Craft Beer Near...</h2>
+  <h2>Craft Beer Ninja</h2>
   <search-form></search-form>
   <alert-box v-if="alert.isVisible" v-bind="alert"></alert-box>
   <search-results-section></search-results-section>
@@ -104,7 +104,8 @@ body {
   display: flex;
   justify-content: center;
   font-family: 'Lato', sans-serif;
-  color: #34495e;
+  background-color: #000;
+  color: #fff;
 }
 h1,
 h2,

@@ -1,26 +1,24 @@
 <template>
-  <div>
-    <ul>
-      <li
-        v-for="place in places"
-        :key="place.place_id"
-        @click="getPlaceDetails(place.place_id)"
-      >
-        <span>{{ place.name }}</span>
-        <span class="distance">
-          <div v-if="!place.distance" class="spinner">
-            <div class="bounce1"></div>
-            <div class="bounce2"></div>
-            <div class="bounce3"></div>
-          </div>
-          <div v-else>{{ place.distance }}</div>
-        </span>
-      </li>
-    </ul>
-    <button v-if="nextPageToken" @click="loadMorePlaces(nextPageToken)">
-      Load More Places
-    </button>
-  </div>
+  <ul>
+    <li
+      v-for="place in places"
+      :key="place.place_id"
+      @click="getPlaceDetails(place.place_id)"
+    >
+      <span>{{ place.name }}</span>
+      <span class="distance">
+        <div v-if="!place.distance" class="spinner">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+        </div>
+        <div v-else>{{ place.distance }}</div>
+      </span>
+    </li>
+  </ul>
+  <button v-if="nextPageToken" @click="loadMorePlaces(nextPageToken)">
+    Load More Places
+  </button>
 </template>
 
 <script>
@@ -134,22 +132,22 @@ li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid #ddd;
+  border: 1px solid #333;
   border-bottom: none;
   padding: 0.5rem;
-  color: #555;
+  color: #fff;
 }
 li:first-child {
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
 }
 li:last-child {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #333;
   border-bottom-left-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
 }
 li:hover {
-  background-color: #f9f9f9;
+  background-color: #121212;
 }
 .spinner {
   margin: auto 0;
@@ -198,7 +196,7 @@ li:hover {
   border-radius: 0.25rem;
   padding: 0.25rem;
   color: #fff;
-  background-color: #34495e;
+  background-color: #16a0859e;
   text-align: center;
   font-size: 0.75rem;
 }
@@ -209,7 +207,8 @@ button {
   border: 1px solid #2b3c4e;
   border-radius: 0.25rem;
   line-height: 1.2;
-  background-color: #34495e;
+  border: 1px solid #1178649e;
+  background-color: #16a0859e;
   color: #fff;
   white-space: nowrap;
   font-size: 0.9rem;

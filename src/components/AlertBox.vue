@@ -18,11 +18,11 @@ div {
   color: #fff;
 }
 .info {
-  border: 1px solid #138a5f;
-  background-color: #16a085;
+  border: 1px solid #1178649e;
+  background-color: #16a0859e;
 }
 .error {
-  border: 1px solid #ab2630;
-  background-color: #c0392b;
+  order: 1px solid #c724130f;
+  background-color: #c7241354;
 }
 </style>

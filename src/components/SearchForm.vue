@@ -1,22 +1,21 @@
 <template>
-  <div>
-    <form @submit.prevent="formSearch">
-      <input
-        id="search-location"
-        name="search-location"
-        type="text"
-        :placeholder="lastSearchLocation.formattedAddress"
-        ref="searchLocationInput"
-        v-model.trim="searchLocationValue"
-      />
-      <button ref="submitBtn">Locate!</button>
-    </form>
-    <form @submit.prevent="geoSearch">
-      <button class="geo-locate-btn">
-        Use My Location
-      </button>
-    </form>
-  </div>
+  <h4>Enter a Location</h4>
+  <form @submit.prevent="formSearch">
+    <input
+      id="search-location"
+      name="search-location"
+      type="text"
+      :placeholder="lastSearchLocation.formattedAddress"
+      ref="searchLocationInput"
+      v-model.trim="searchLocationValue"
+    />
+    <button ref="submitBtn">Locate!</button>
+  </form>
+  <form @submit.prevent="geoSearch">
+    <button class="geo-locate-btn">
+      Use My Location
+    </button>
+  </form>
 </template>
 
 <script>
@@ -195,32 +194,41 @@ export default {
 
 <style scoped>
 * {
-  color: #555;
+  color: #666;
+}
+h4 {
+  margin-top: 0.5rem;
 }
 form {
   text-align: center;
 }
 input {
   width: 100%;
-  margin: 0.5rem 0;
+  margin: 0.25rem 0;
   border-radius: 0.25rem;
-  border: 1px solid #ddd;
+  border: 1px solid #333;
+  background-color: #333;
+  color: #fff;
   padding: 0.75rem 0.25rem;
   text-align: center;
   font-size: 0.95rem;
 }
+input:active,
 input:focus,
-input:focus-visible {
-  border: 1px solid #16a085 !important;
+input:focus-within,
+input:focus-visible,
+input:hover,
+input:target {
+  border: 1px solid #666 !important;
 }
 button {
   width: 100%;
   margin: 0.25rem 0;
   padding: 0.75rem 0.5rem;
-  border: 1px solid #2b3c4e;
+  border: 1px solid #1178649e;
+  background-color: #16a0859e;
   border-radius: 0.25rem;
   line-height: 1.2;
-  background-color: #34495e;
   color: #fff;
   white-space: nowrap;
   font-size: 0.9rem;
@@ -228,8 +236,8 @@ button {
   cursor: pointer;
 }
 button.geo-locate-btn {
-  border-color: #87999a;
-  background-color: #95a5a6;
+  border-color: #2a2a2a;
+  background-color: #333;
 }
 button.disabled {
   opacity: 0.7;
