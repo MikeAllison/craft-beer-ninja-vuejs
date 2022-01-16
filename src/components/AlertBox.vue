@@ -18,7 +18,7 @@ div {
   color: #bbb;
 }
 .info {
-  border: 1px solid #adaf11;
+  border: 0;
   background-color: #adaf11;
   color: #000;
 }
