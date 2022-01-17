@@ -19,7 +19,7 @@ div {
 }
 .info {
   border: 0;
-  background-color: #adaf11;
+  background-color: #bbb;
   color: #000;
 }
 .error {
