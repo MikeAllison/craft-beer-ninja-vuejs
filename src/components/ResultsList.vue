@@ -156,6 +156,7 @@ li:last-child {
 }
 li:hover {
   background-color: #121212;
+  cursor: pointer;
 }
 button {
   width: 100%;

@@ -47,6 +47,9 @@ ul.menu > li {
   padding: 0.7rem;
   color: #bbb;
 }
+ul.menu > li:hover {
+  cursor: pointer;
+}
 .selected {
   border: 1px solid #333;
   border-bottom: 2px solid #333;

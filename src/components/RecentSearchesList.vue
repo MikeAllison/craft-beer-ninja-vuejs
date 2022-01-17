@@ -127,6 +127,7 @@ li:last-child {
 }
 li:hover {
   background-color: #121212;
+  cursor: pointer;
 }
 .placesCount {
   min-width: 30px;
