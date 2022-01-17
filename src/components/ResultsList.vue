@@ -95,9 +95,12 @@ export default {
               destinations: newDestinations
             })
             .then(response => {
-              store.commit('updatePlaceDistances', {
+              // This setTimeout is only here to see the cool animation on the distance boxes for a sec ;)
+              setTimeout(() => {
+                store.commit('updatePlaceDistances', {
                 placeDistances: response.data.place_distances
               });
+              }, 2000);
             })
             .catch(error => {
               console.log(error);
@@ -184,7 +187,7 @@ button {
   height: 8px;
   width: 6px;
   margin: 1px;
-  background-color: #bbb;
+  background-color: #000;
   display: inline-block;
   -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
   animation: sk-bouncedelay 1.4s infinite ease-in-out both;

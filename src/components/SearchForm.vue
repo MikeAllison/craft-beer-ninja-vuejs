@@ -84,9 +84,12 @@ export default {
               destinations: store.state.places
             })
             .then(response => {
-              store.commit('updatePlaceDistances', {
+              // This setTimeout is only here to see the cool animation on the distance boxes for a sec ;)
+              setTimeout(() => {
+                store.commit('updatePlaceDistances', {
                 placeDistances: response.data.place_distances
               });
+              }, 2000);
             })
             .catch(error => {
               console.log(error);
@@ -150,9 +153,12 @@ export default {
                   destinations: store.state.places
                 })
                 .then(response => {
-                  store.commit('updatePlaceDistances', {
+                  // This setTimeout is only here to see the cool animation on the distance boxes for a sec ;)
+                  setTimeout(() => {
+                    store.commit('updatePlaceDistances', {
                     placeDistances: response.data.place_distances
                   });
+                  }, 2000);
                 })
                 .catch(error => {
                   console.log(error);
