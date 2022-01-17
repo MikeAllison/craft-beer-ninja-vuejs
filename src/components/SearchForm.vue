@@ -217,13 +217,8 @@ input {
   text-align: center;
   font-size: 0.95rem;
 }
-input:active,
-input:focus,
-input:focus-within,
-input:focus-visible,
-input:hover,
-input:target {
-  border: 1px solid #666 !important;
+input:focus {
+  border: 1px solid #adaf11 !important;
 }
 button {
   display: flex;
@@ -231,7 +226,7 @@ button {
   align-items: center;
   width: 100%;
   margin: 0.5rem 0;
-  padding: 0.75rem 0.5rem;
+  padding: 1rem;
   border: 0;
   background-color: #adaf11;
   border-radius: 0.25rem;

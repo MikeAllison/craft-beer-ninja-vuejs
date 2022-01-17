@@ -139,7 +139,7 @@ li {
   align-items: center;
   border: 1px solid #333;
   border-bottom: none;
-  padding: 0.5rem;
+  padding: 0.75rem;
   color: #bbb;
 }
 li:first-child {
@@ -156,8 +156,8 @@ li:hover {
 }
 button {
   width: 100%;
-  margin-bottom: 0.75rem;
-  padding: 0.75rem 0.5rem;
+  margin-bottom: 4rem;
+  padding: 1rem;
   border: 0;
   background-color: #adaf11;
   border-radius: 0.25rem;

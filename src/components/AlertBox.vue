@@ -12,7 +12,7 @@ export default {
 div {
   margin-top: 1rem;
   border-radius: 0.25rem;
-  padding: 0.75rem 0.25rem;
+  padding: 1rem 0.5rem;
   text-align: center;
   font-size: 0.9rem;
   color: #bbb;

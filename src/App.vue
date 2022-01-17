@@ -110,6 +110,9 @@ export default {
   margin: 0;
   padding: 0;
 }
+*:focus {
+  outline:none !important
+}
 body {
   display: flex;
   justify-content: center;

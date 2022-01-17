@@ -112,6 +112,7 @@ button {
 .place-details-modal {
   width: 90%;
   border-radius: 0.25rem;
+  margin-bottom: 4rem;
   padding: 1rem;
   background-color: #121212;
   color: #bbb;

@@ -101,6 +101,7 @@ export default {
 <style scoped>
 h3 {
   margin-top: 1rem;
+  color: #adaf11;
 }
 ul {
   margin-top: 0.75rem;
@@ -112,7 +113,7 @@ li {
   align-items: center;
   border: 1px solid #333;
   border-bottom: none;
-  padding: 0.5rem;
+  padding: 0.75rem;
   color: #bbb;
 }
 li:first-child {
