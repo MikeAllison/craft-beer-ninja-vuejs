@@ -102,7 +102,7 @@ export default {
           console.log(error);
           this.showAlert(
             'error',
-            `Sorry, there was a problem with the search.`
+            `Sorry, there was a problem with the search.\n${error}`
           );
           this.enableUI();
         });
@@ -171,16 +171,16 @@ export default {
               console.log(error);
               this.showAlert(
                 'error',
-                `Sorry, there was a problem with the search.`
+                `Sorry, there was a problem with the search.\n${error}`
               );
               this.enableUI();
             });
         },
-        () => {
+        (error) => {
           console.log('Browser Geolocation Error');
           this.showAlert(
             'error',
-            `Sorry, there was a problem with the search.`
+            `Sorry, there was a problem with the search.\n${error}`
           );
           this.enableUI();
         }
