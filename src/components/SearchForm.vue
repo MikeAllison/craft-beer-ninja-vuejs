@@ -176,7 +176,7 @@ export default {
               this.enableUI();
             });
         },
-        (error) => {
+        () => {
           console.log('Browser Geolocation Error');
           this.showAlert(
             'error',
