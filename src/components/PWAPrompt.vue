@@ -1,13 +1,11 @@
 <template>
   <div v-if="shown">
-    Add app to home screen?
-
+    Add Craft Beer Ninja to home screen?
     <button @click="installPWA">
-      Install!
+      Yes
     </button>
-
     <button @click="dismissPrompt">
-      No, thanks
+      No
     </button>
   </div>
 </template>
@@ -33,7 +31,7 @@ export default {
     installPWA() {
       this.installEvent.prompt();
       this.installEvent.userChoice.then(choice => {
-        this.dismissPrompt(); // Hide the prompt once the user's clicked
+        this.dismissPrompt();
         if (choice.outcome === 'accepted') {
           // Do something additional if the user chose to install
         } else {
@@ -44,3 +42,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  div {
+    height: 4rem;
+    background-color: #fdfdfd;
+    color: #000;
+  }
+</style>

@@ -1,4 +1,5 @@
 <template>
+  <pwa-prompt></pwa-prompt>
   <teleport to="body">
     <search-modal
       v-if="searchModal.isVisible"
@@ -20,6 +21,7 @@
 
 <script>
 import store from './store/index.js';
+import PwaPrompt from './components/PwaPrompt.vue';
 import SearchModal from './components/SearchModal.vue';
 import SearchForm from './components/SearchForm.vue';
 import AlertBox from './components/AlertBox.vue';
@@ -28,6 +30,7 @@ import PlaceDetailsModal from './components/PlaceDetailsModal.vue';
 
 export default {
   components: {
+    PwaPrompt,
     SearchModal,
     SearchForm,
     AlertBox,
@@ -89,20 +92,17 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
 @media screen and (max-width: 576px) {
   #app {
-    width: 95%;
-    margin-top: 0.75rem;
+    width: 100%;
   }
 }
 @media screen and (min-width: 577px) {
   #app {
     width: 75%;
-    margin-top: 0.75rem;
   }
 }
 @media screen and (min-width: 768px) {
   #app {
     width: 55%;
-    margin-top: 0.75rem;
   }
 }
 * {
