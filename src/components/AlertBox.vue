@@ -15,15 +15,15 @@ div {
   padding: 1rem 0.5rem;
   text-align: center;
   font-size: 0.9rem;
-  color: #bbb;
 }
 .info {
   border: 0;
-  background-color: #bbb;
-  color: #000;
+  background-color: #fdfdfd;
+  color: #333;
 }
 .error {
   border: 1px solid #600808;
   background-color: #600808;
+  color: #fdfdfd;
 }
 </style>
