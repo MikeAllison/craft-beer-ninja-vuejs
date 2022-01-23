@@ -11,12 +11,14 @@
     ></place-details-modal>
   </teleport>
   <div class="brand">
-    <img src="../public/ninja.svg">
+    <img src="../public/ninja.svg" />
     <h2>Craft Beer Ninja</h2>
   </div>
-  <search-form></search-form>
-  <alert-box v-if="alert.isVisible" v-bind="alert"></alert-box>
-  <search-results-section></search-results-section>
+  <div class="app">
+    <search-form></search-form>
+    <alert-box v-if="alert.isVisible" v-bind="alert"></alert-box>
+    <search-results-section></search-results-section>
+  </div>
 </template>
 
 <script>
@@ -82,7 +84,7 @@ export default {
     setActiveList(listName) {
       store.commit('setActiveList', {
         listName: listName
-      })
+      });
     }
   }
 };
@@ -111,7 +113,7 @@ export default {
   padding: 0;
 }
 *:focus {
-  outline:none !important
+  outline: none !important;
 }
 body {
   display: flex;
@@ -133,10 +135,13 @@ h6 {
   justify-content: center;
 }
 .brand > * {
-  margin: 0 0.25rem;
+  margin: 0.5rem 0.25rem;
 }
 .brand > img {
   width: 30px;
-  filter: invert(100%)
+  filter: invert(100%);
+}
+.app {
+  margin: 0.5rem;
 }
 </style>
