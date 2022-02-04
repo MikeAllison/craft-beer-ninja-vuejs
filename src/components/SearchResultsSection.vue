@@ -38,13 +38,13 @@ export default {
 <style scoped>
 ul.menu {
   margin-top: 0.75rem;
-  padding: 0.9rem;
+  padding: 1rem;
   padding-left: 0;
   border-bottom: 1px solid #333;
 }
 ul.menu > li {
   display: inline;
-  padding: 0.85rem;
+  padding: 0.95rem;
   color: #bbb;
 }
 ul.menu > li:hover {
