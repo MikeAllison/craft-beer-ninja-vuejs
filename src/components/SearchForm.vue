@@ -214,12 +214,12 @@ form {
 }
 input {
   width: 100%;
-  margin: 0.25rem 0;
+  margin-top: 0.5rem;
   border-radius: 0.25rem;
   border: 1px solid #333;
   background-color: #333;
   color: #bbb;
-  padding: 0.75rem 0.25rem;
+  padding: 0.938rem 0.25rem;
   text-align: center;
   font-size: 0.95rem;
 }
