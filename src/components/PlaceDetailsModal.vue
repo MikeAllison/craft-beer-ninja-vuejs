@@ -101,9 +101,9 @@ button {
   margin-top: 0.25rem;
   padding: 0.75rem 0.5rem;
   border: 0;
-  background-color: #adaf11;
+  background-color: #333;
   border-radius: 0.25rem;
-  color: #000;
+  color: #fdfdfd;
   white-space: nowrap;
   font-size: 0.9rem;
   text-decoration: none;

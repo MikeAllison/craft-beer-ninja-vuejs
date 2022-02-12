@@ -19,6 +19,7 @@ div {
 .info {
   border: 0;
   background-color: #fdfdfd;
+  opacity: 0.9;
   color: #333;
 }
 .error {

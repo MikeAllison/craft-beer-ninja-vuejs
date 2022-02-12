@@ -142,7 +142,7 @@ li {
   align-items: center;
   border: 1px solid #333;
   border-bottom: none;
-  padding: 0.75rem;
+  padding: 0.94rem;
   color: #bbb;
 }
 li:first-child {
