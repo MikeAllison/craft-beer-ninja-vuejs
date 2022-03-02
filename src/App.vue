@@ -11,7 +11,7 @@
     ></place-details-modal>
   </teleport>
   <div class="brand">
-    <img src="../public/ninja.svg" />
+    <img src="img/icons/ninja.svg" alt="Ninja Icon" />
     <h2>Craft Beer Ninja</h2>
   </div>
   <div class="app">

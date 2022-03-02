@@ -9,11 +9,11 @@
       ref="searchLocationInput"
       v-model.trim="searchLocationValue"
     />
-    <button ref="submitBtn"><img src="../../public/geolocation.svg">Locate!</button>
+    <button ref="submitBtn"><img src="../../public/img/icons/geolocation.svg" alt="Globe Icon">Locate!</button>
   </form>
   <form @submit.prevent="geoSearch">
     <button class="geo-locate-btn">
-      <img src="../../public/compass.svg">
+      <img src="../../public/img/icons/compass.svg" alt="Compass Icon">
       Use My Location
     </button>
   </form>

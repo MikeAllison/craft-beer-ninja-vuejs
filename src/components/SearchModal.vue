@@ -2,7 +2,7 @@
   <dialog open>
     <div class="search-modal">
       <div class="logo">
-        <img src="../../public/ninja.svg">
+        <img src="../../public/img/icons/ninja.svg" alt="Ninja Icon">
       </div>
       <div class="search-step">{{ currentStep }}</div>
       <div class="spinner">

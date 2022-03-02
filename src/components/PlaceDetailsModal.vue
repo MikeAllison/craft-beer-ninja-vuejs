@@ -1,7 +1,7 @@
 <template>
   <dialog open>
     <div class="place-details-modal">
-      <img src="../../public/ninja.svg">
+      <img src="../../public/img/icons/ninja.svg" alt="Ninja Icon">
       <h2>{{ placeDetails.name }}</h2>
       <hr />
       <h4>Open Now:</h4>

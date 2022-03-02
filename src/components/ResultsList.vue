@@ -1,5 +1,5 @@
 <template>
-  <img v-if="places.length === 0" src="../../public/beer-hefe.svg">
+  <img v-if="places.length === 0" src="../../public/img/icons/beer-hefe.svg" alt="Beer Glass Icon">
   <ul>
     <li
       v-for="place in places"

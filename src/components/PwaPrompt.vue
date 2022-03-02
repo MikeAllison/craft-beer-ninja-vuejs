@@ -20,6 +20,9 @@ export default {
     };
   },
   beforeMount() {
+    if (JSON.parse(localStorage.getItem('showPwaPrompt') === 'false')) {
+      return;
+    }
     window.addEventListener('beforeinstallprompt', e => {
       e.preventDefault();
       this.installEvent = e;
@@ -29,17 +32,11 @@ export default {
   methods: {
     dismissPrompt() {
       this.shown = false;
+      localStorage.setItem('showPwaPrompt', false);
     },
     installPWA() {
       this.installEvent.prompt();
-      this.installEvent.userChoice.then(choice => {
-        this.dismissPrompt();
-        if (choice.outcome === 'accepted') {
-          // Do something additional if the user chose to install
-        } else {
-          // Do something additional if the user declined
-        }
-      });
+      this.dismissPrompt();
     }
   }
 };
