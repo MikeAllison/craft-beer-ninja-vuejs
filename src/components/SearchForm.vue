@@ -1,5 +1,5 @@
 <template>
-  <h4>Enter a Location</h4>
+  <h3>Enter a Location</h3>
   <form @submit.prevent="formSearch">
     <input
       id="search-location"
@@ -205,8 +205,7 @@ export default {
 * {
   color: #666;
 }
-h4 {
-  margin-top: 0.5rem;
+h3 {
   color: #adaf11;
 }
 form {
