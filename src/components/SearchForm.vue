@@ -251,9 +251,6 @@ button.geo-locate-btn {
   background-color: #333;
   color: #bbb;
 }
-button.geo-locate-btn > img {
-  filter: invert(90%);
-}
 button.disabled {
   opacity: 0.7;
 }

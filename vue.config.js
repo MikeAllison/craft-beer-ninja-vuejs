@@ -7,31 +7,33 @@ module.exports = {
   },
   pwa: {
     name: 'Craft Beer Ninja',
-    themeColor: '#ffffff',
+    themeColor: '#fdfdfd',
     msTileColor: '#000000',
     appleMobileWebAppCapable: 'yes',
     appleMobileWebAppStatusBarStyle: 'black',
     iconPaths: {
-      faviconSVG: 'img/icons/ninja.svg',
-      favicon32: 'img/icons/ninja.svg',
-      favicon16: 'img/icons/ninja.svg',
-      appleTouchIcon: 'img/icons/ninja.svg',
-      maskIcon: 'img/icons/ninja.svg',
-      msTileImage: 'img/icons/ninja.svg'
+      faviconSVG: 'img/icons/ninja-black.svg',
+      favicon32: 'img/icons/favicon-32x32.png',
+      favicon16: 'img/icons/favicon-16x16.pmg',
+      appleTouchIcon: 'img/icons/apple-touch-icon.png',
+      maskIcon: 'img/icons/ninja-black.svg',
+      msTileImage: 'img/icons/mstile-310x310.png'
     },
     manifestOptions: {
+      display: 'standalone',
+      orientation: 'portrait',
       icons: [
         {
-          src: './img/icons/ninja.svg',
-          sizes: '150x150',
+          src: '/img/icons/ninja-512x512.png',
+          sizes: '512x512',
           type: 'image/png',
           purpose: 'any'
         },
         {
-          rc: './img/icons/ninja.svg',
-          sizes: '150x150',
+          src: '/img/icons/ninja-192x192.png',
+          sizes: '192x192',
           type: 'image/png',
-          purpose: 'maskable'
+          purpose: 'any'
         }
       ]
     }

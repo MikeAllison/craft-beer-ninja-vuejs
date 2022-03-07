@@ -11,7 +11,7 @@
     ></place-details-modal>
   </teleport>
   <div class="brand">
-    <img src="img/icons/ninja.svg" alt="Ninja Icon" />
+    <img src="img/icons/ninja-white-trans.svg" alt="Ninja Icon" />
     <h2>Craft Beer Ninja</h2>
   </div>
   <div class="app">
@@ -139,7 +139,6 @@ h6 {
 }
 .brand > img {
   width: 30px;
-  filter: invert(100%);
 }
 .app {
   margin: 0.5rem;

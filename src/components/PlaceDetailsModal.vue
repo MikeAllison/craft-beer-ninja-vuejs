@@ -1,7 +1,7 @@
 <template>
   <dialog open>
     <div class="place-details-modal">
-      <img src="../../public/img/icons/ninja.svg" alt="Ninja Icon">
+      <img src="../../public/img/icons/ninja-white-trans.svg" alt="Ninja Icon">
       <h2>{{ placeDetails.name }}</h2>
       <hr />
       <h4>Open Now:</h4>
@@ -70,7 +70,6 @@ dialog {
 }
 img {
   width: 3rem;
-  filter: invert(100%);
   margin: 0.5rem 0;
 }
 h2 {

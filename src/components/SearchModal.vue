@@ -2,7 +2,7 @@
   <dialog open>
     <div class="search-modal">
       <div class="logo">
-        <img src="../../public/img/icons/ninja.svg" alt="Ninja Icon">
+        <img src="../../public/img/icons/ninja-white-trans.svg" alt="Ninja Icon">
       </div>
       <div class="search-step">{{ currentStep }}</div>
       <div class="spinner">
@@ -37,7 +37,6 @@ dialog {
 }
 img {
   width: 3rem;
-  filter: invert(100%);
   margin: 0.5rem 0;
 }
 .logo {

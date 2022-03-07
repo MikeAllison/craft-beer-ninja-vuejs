@@ -130,7 +130,7 @@ export default {
 <style scoped>
 img {
   margin-top: 4rem;
-  filter: invert(5%);
+  opacity: 0.2;
 }
 ul {
   margin: 0.75rem 0;
