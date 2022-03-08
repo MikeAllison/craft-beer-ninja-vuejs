@@ -11,6 +11,7 @@
     />
     <button ref="submitBtn"><img src="../../public/img/icons/geolocation.svg" alt="Globe Icon">Locate!</button>
   </form>
+  <h4>- or -</h4>
   <form @submit.prevent="geoSearch">
     <button class="geo-locate-btn">
       <img src="../../public/img/icons/compass.svg" alt="Compass Icon">
