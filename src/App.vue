@@ -10,10 +10,10 @@
       v-bind="placeDetailsModal"
     ></place-details-modal>
   </teleport>
-  <div class="brand">
+  <header class="brand">
     <img src="img/icons/ninja-white-trans.svg" alt="Ninja Icon" />
     <h2>Craft Beer Ninja</h2>
-  </div>
+  </header>
   <div class="app">
     <search-form></search-form>
     <alert-box v-if="alert.isVisible" v-bind="alert"></alert-box>
