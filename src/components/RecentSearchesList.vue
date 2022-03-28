@@ -7,7 +7,7 @@
       @click="savedPlaceSearch(recentSearch.savedSearchLocation)"
     >
       <span>{{ recentSearch.savedSearchLocation }}</span>
-      <span class="placesCount">{{ recentSearch.placesCount }}</span>
+      <span class="places-count">{{ recentSearch.placesCount }}</span>
     </li>
   </ul>
 </template>
@@ -129,7 +129,7 @@ li:hover {
   background-color: #121212;
   cursor: pointer;
 }
-.placesCount {
+.places-count {
   min-width: 30px;
   border-radius: 0.25rem;
   padding: 0.25rem;
