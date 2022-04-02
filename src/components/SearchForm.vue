@@ -9,7 +9,7 @@
       ref="searchLocationInput"
       v-model.trim="searchLocationValue"
     />
-    <button ref="submitBtn"><img src="../../public/img/icons/geolocation.svg" alt="Globe Icon">Locate!</button>
+    <button ref="submitBtn" :disabled="searchInputEmpty"><img src="../../public/img/icons/geolocation.svg" alt="Globe Icon">Locate!</button>
   </form>
   <h4>- or -</h4>
   <form @submit.prevent="geoSearch">
@@ -37,11 +37,9 @@ export default {
       this.showSearchModal(true);
       this.$refs.searchLocationInput.setAttribute('disabled', true);
       this.$refs.submitBtn.setAttribute('disabled', true);
-      this.$refs.submitBtn.classList.add('disabled');
     },
     enableUI() {
       this.$refs.submitBtn.removeAttribute('disabled');
-      this.$refs.submitBtn.classList.remove('disabled');
       this.$refs.searchLocationInput.removeAttribute('disabled');
       this.searchLocationValue = '';
       this.showSearchModal(false);
@@ -197,6 +195,9 @@ export default {
     },
     nextPageToken() {
       return store.state.nextPageToken;
+    },
+    searchInputEmpty() {
+      return this.searchLocationValue.trim().length === 0;
     }
   }
 };
@@ -251,7 +252,7 @@ button.geo-locate-btn {
   background-color: #333;
   color: #bbb;
 }
-button.disabled {
-  opacity: 0.7;
+button[disabled] {
+  opacity: 0.3;
 }
 </style>
